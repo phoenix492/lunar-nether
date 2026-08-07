@@ -1,6 +1,5 @@
 package dev.dhyces.lunarnether.client.particle;
 
-import dev.dhyces.lunarnether.particle.ColorRangeParticleOption;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.BaseAshSmokeParticle;
 import net.minecraft.client.particle.Particle;
@@ -9,6 +8,8 @@ import net.minecraft.client.particle.SpriteSet;
 import net.minecraft.util.RandomSource;
 
 import java.util.function.ToIntFunction;
+
+import dev.dhyces.lunarnether.particle.ColorRangeParticleOption;
 
 public class ColoredAshParticle extends BaseAshSmokeParticle {
     protected ColoredAshParticle(ClientLevel pLevel, double pX, double pY, double pZ, double pXSpeed, double pYSpeed, double pZSpeed, float pQuadSizeMultiplier, SpriteSet pSprites, ToIntFunction<RandomSource> rgbColorFunc) {

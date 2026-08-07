@@ -1,12 +1,15 @@
 package dev.dhyces.biomeextensions.extension;
 
-import com.google.common.collect.ImmutableMap;
 import com.mojang.serialization.Codec;
-import it.unimi.dsi.fastutil.objects.Reference2ObjectOpenHashMap;
 import net.minecraft.Util;
-import org.jetbrains.annotations.Nullable;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Map;
+import java.util.Optional;
+import com.google.common.collect.ImmutableMap;
+import it.unimi.dsi.fastutil.objects.Reference2ObjectOpenHashMap;
+
+import org.jetbrains.annotations.Nullable;
 
 public class BiomeExtension {
     public static final Codec<BiomeExtension> CODEC = ExtensionElement.LIST_CODEC.xmap(

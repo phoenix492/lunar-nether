@@ -1,8 +1,5 @@
 package dev.dhyces.biomeextensions;
 
-import dev.dhyces.biomeextensions.impl.ApiAccessImpl;
-import dev.dhyces.biomeextensions.extension.ExtensionElementType;
-import dev.dhyces.biomeextensions.extension.effects.BaseFogExtension;
 import net.minecraft.Util;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.FogRenderer.FogMode;
@@ -12,13 +9,17 @@ import net.minecraft.util.CubicSampler;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.material.FogType;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.client.event.ViewportEvent;
-import net.minecraftforge.eventbus.api.EventPriority;
-import net.minecraftforge.eventbus.api.IEventBus;
+import net.neoforged.bus.api.EventPriority;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.neoforge.client.event.ViewportEvent;
 
 import java.util.EnumMap;
 import java.util.Map;
 import java.util.Optional;
+
+import dev.dhyces.biomeextensions.extension.ExtensionElementType;
+import dev.dhyces.biomeextensions.extension.effects.BaseFogExtension;
+import dev.dhyces.biomeextensions.impl.ApiAccessImpl;
 
 public class BiomeExtensionsModClient {
 

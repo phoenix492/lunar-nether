@@ -1,9 +1,10 @@
 package dev.dhyces.biomeextensions.registry;
 
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.neoforge.registries.DataPackRegistryEvent;
+
 import dev.dhyces.biomeextensions.ApiAccess;
 import dev.dhyces.biomeextensions.extension.BiomeExtension;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.registries.DataPackRegistryEvent;
 
 public class ExtendedBiomeRegistry {
     public static void init(IEventBus modBus) {

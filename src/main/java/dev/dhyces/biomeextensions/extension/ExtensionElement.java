@@ -1,9 +1,10 @@
 package dev.dhyces.biomeextensions.extension;
 
 import com.mojang.serialization.Codec;
-import dev.dhyces.biomeextensions.ApiAccess;
 
 import java.util.List;
+
+import dev.dhyces.biomeextensions.ApiAccess;
 
 public interface ExtensionElement {
     Codec<ExtensionElement> DISPATCH_CODEC = ApiAccess.getInstance().getTypeCodec().dispatch(ExtensionElement::getType, ExtensionElementType::getCodec);

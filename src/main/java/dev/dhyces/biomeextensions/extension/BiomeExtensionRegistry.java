@@ -1,12 +1,14 @@
 package dev.dhyces.biomeextensions.extension;
 
+import com.mojang.serialization.Codec;
+import net.minecraft.resources.ResourceLocation;
+
 import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
-import com.mojang.serialization.Codec;
+
 import dev.dhyces.biomeextensions.ApiEntrypoint;
-import dev.dhyces.biomeextensions.util.ModResourceLocation;
 import dev.dhyces.biomeextensions.BiomeExtensionsMod;
-import net.minecraft.resources.ResourceLocation;
+import dev.dhyces.biomeextensions.util.ModResourceLocation;
 
 // Holds the extension types that must be present on both sides
 public class BiomeExtensionRegistry {
@@ -19,7 +21,7 @@ public class BiomeExtensionRegistry {
             apiEntrypoint.registerTypes(new ApiEntrypoint.EffectTypeRegister() {
                 @Override
                 public <T extends ExtensionElement> ExtensionElementType<T> register(String id, ExtensionElementType<T> type) {
-                    return BiomeExtensionRegistry.register(new ResourceLocation(modid, id), type);
+                    return BiomeExtensionRegistry.register(ResourceLocation.fromNamespaceAndPath(modid, id), type);
                 }
             });
         });

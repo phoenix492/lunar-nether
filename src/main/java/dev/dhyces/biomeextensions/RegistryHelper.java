@@ -1,8 +1,9 @@
 package dev.dhyces.biomeextensions;
 
-import dev.dhyces.biomeextensions.extension.BiomeExtension;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+
+import dev.dhyces.biomeextensions.extension.BiomeExtension;
 
 public class RegistryHelper {
     public static ResourceKey<BiomeExtension> registryKey(ResourceLocation elementId) {

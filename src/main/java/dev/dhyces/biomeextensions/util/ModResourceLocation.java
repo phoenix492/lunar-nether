@@ -1,8 +1,9 @@
 package dev.dhyces.biomeextensions.util;
 
 import com.mojang.serialization.Codec;
-import dev.dhyces.biomeextensions.BiomeExtensionsMod;
 import net.minecraft.resources.ResourceLocation;
+
+import dev.dhyces.biomeextensions.BiomeExtensionsMod;
 
 public final class ModResourceLocation {
     public static final Codec<ResourceLocation> CODEC = Codec.STRING.comapFlatMap(s -> {

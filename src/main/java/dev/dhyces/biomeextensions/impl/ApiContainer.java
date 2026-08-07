@@ -1,14 +1,15 @@
 package dev.dhyces.biomeextensions.impl;
 
-import com.google.common.collect.BiMap;
-import com.google.common.collect.HashBiMap;
-import dev.dhyces.biomeextensions.ApiEntrypoint;
-import dev.dhyces.biomeextensions.BiomeExtensionsMod;
-import net.minecraftforge.fml.ModList;
+import net.neoforged.neoforge.fml.ModList;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Set;
 import java.util.function.BiConsumer;
+import com.google.common.collect.BiMap;
+import com.google.common.collect.HashBiMap;
+
+import dev.dhyces.biomeextensions.ApiEntrypoint;
+import dev.dhyces.biomeextensions.BiomeExtensionsMod;
 
 public class ApiContainer {
     private BiMap<String, ApiEntrypoint> entrypoints;

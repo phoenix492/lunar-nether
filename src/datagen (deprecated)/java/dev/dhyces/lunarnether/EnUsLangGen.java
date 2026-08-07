@@ -2,7 +2,7 @@ package dev.dhyces.lunarnether;
 
 import dev.dhyces.lunarnether.registry.ModBlocks;
 import net.minecraft.data.PackOutput;
-import net.minecraftforge.common.data.LanguageProvider;
+import net.neoforged.neoforge.common.data.LanguageProvider;
 
 public class EnUsLangGen extends LanguageProvider {
     public EnUsLangGen(PackOutput output) {

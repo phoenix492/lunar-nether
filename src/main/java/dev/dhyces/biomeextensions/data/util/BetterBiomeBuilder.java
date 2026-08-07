@@ -5,10 +5,11 @@ import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.BiomeGenerationSettings;
 import net.minecraft.world.level.biome.BiomeSpecialEffects;
 import net.minecraft.world.level.biome.MobSpawnSettings;
-import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnegative;
 import java.util.function.Consumer;
+
+import org.jetbrains.annotations.NotNull;
 
 public class BetterBiomeBuilder {
 

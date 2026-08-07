@@ -1,31 +1,15 @@
 package dev.dhyces.lunarnether.particle;
 
-import com.mojang.brigadier.StringReader;
-import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import dev.dhyces.lunarnether.util.ColorUtil;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleType;
-import net.minecraft.nbt.NbtOps;
-import net.minecraft.nbt.StringTag;
-import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.util.FastColor;
 import net.minecraft.util.RandomSource;
 
-public class ColorRangeParticleOption implements ParticleOptions {
-    public static final Deserializer<ColorRangeParticleOption> DESERIALIZER = new Deserializer<>() {
-        @Override
-        public ColorRangeParticleOption fromCommand(ParticleType<ColorRangeParticleOption> pParticleType, StringReader pReader) throws CommandSyntaxException {
-            pReader.expect(' ');
-            return new ColorRangeParticleOption(pParticleType, Integer.decode(pReader.readStringUntil(' ')), Integer.decode(pReader.readStringUntil(' ')), ColorUtil.ColorSpace.CODEC.parse(NbtOps.INSTANCE, StringTag.valueOf(pReader.readString())).getOrThrow(false, s -> {}));
-        }
+import dev.dhyces.lunarnether.util.ColorUtil;
+import org.jetbrains.annotations.NotNull;
 
-        @Override
-        public ColorRangeParticleOption fromNetwork(ParticleType<ColorRangeParticleOption> pParticleType, FriendlyByteBuf pBuffer) {
-            return new ColorRangeParticleOption(pParticleType, pBuffer.readInt(), pBuffer.readInt(), pBuffer.readEnum(ColorUtil.ColorSpace.class));
-        }
-    };
+public class ColorRangeParticleOption implements ParticleOptions {
 
     public static Codec<ColorRangeParticleOption> codec(ParticleType<ColorRangeParticleOption> type) {
         return RecordCodecBuilder.create(instance ->
@@ -53,20 +37,8 @@ public class ColorRangeParticleOption implements ParticleOptions {
     }
 
     @Override
-    public ParticleType<?> getType() {
+    public @NotNull ParticleType<?> getType() {
         return particleType;
     }
 
-    @Override
-    public void writeToNetwork(FriendlyByteBuf pBuffer) {
-        pBuffer.writeInt(minRgbColor);
-        pBuffer.writeInt(maxRgbColor);
-    }
-
-    @Override
-    public String writeToString() {
-        String min = "[%s,%s,%s]".formatted(FastColor.ARGB32.red(minRgbColor), FastColor.ARGB32.green(minRgbColor), FastColor.ARGB32.blue(minRgbColor));
-        String max = "[%s,%s,%s]".formatted(FastColor.ARGB32.red(maxRgbColor), FastColor.ARGB32.green(maxRgbColor), FastColor.ARGB32.blue(maxRgbColor));
-        return min + " " + max + " " + colorSpace.getSerializedName();
-    }
 }

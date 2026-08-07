@@ -1,10 +1,11 @@
 package dev.dhyces.lunarnether.mixin;
 
-import dev.dhyces.lunarnether.LunarNetherClient;
-import dev.dhyces.lunarnether.server.LunarTimeData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.dimension.DimensionType;
+
+import dev.dhyces.lunarnether.LunarNetherClient;
+import dev.dhyces.lunarnether.server.saveddata.LunarTimeData;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -19,7 +20,7 @@ public abstract class DimensionTypeMixin {
             if (level.isClientSide()) {
                 cir.setReturnValue(LunarTimeData.netherTimeOfDay(LunarNetherClient.netherDayTime));
             } else {
-                cir.setReturnValue(LunarTimeData.netherTimeOfDay(LunarTimeData.getOrCreate((ServerLevel) level).getDaytime()));
+                cir.setReturnValue(LunarTimeData.netherTimeOfDay(LunarTimeData.getOrCreate((ServerLevel) level).daytime()));
             }
         }
     }

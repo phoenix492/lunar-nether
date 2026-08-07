@@ -8,9 +8,10 @@ import net.minecraft.world.level.biome.AmbientAdditionsSettings;
 import net.minecraft.world.level.biome.AmbientMoodSettings;
 import net.minecraft.world.level.biome.AmbientParticleSettings;
 import net.minecraft.world.level.biome.BiomeSpecialEffects;
-import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnegative;
+
+import org.jetbrains.annotations.NotNull;
 
 public class BetterBiomeSpecialEffectsBuilder {
 

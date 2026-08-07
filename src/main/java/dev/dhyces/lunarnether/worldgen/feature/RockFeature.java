@@ -1,13 +1,14 @@
 package dev.dhyces.lunarnether.worldgen.feature;
 
 import com.mojang.serialization.Codec;
-import dev.dhyces.lunarnether.worldgen.feature.configs.ExtendedBlockStateConfiguration;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
+
+import dev.dhyces.lunarnether.worldgen.feature.configs.ExtendedBlockStateConfiguration;
 
 public class RockFeature extends Feature<ExtendedBlockStateConfiguration> {
     public RockFeature(Codec<ExtendedBlockStateConfiguration> pCodec) {

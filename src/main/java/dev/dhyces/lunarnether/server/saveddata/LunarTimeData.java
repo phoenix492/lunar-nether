@@ -1,7 +1,6 @@
-package dev.dhyces.lunarnether.server;
+package dev.dhyces.lunarnether.server.saveddata;
 
-import dev.dhyces.lunarnether.networking.LunarNetherNetwork;
-import dev.dhyces.lunarnether.networking.SyncLunarTimeS2CPacket;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
@@ -9,35 +8,42 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.saveddata.SavedData;
 
+import net.neoforged.neoforge.network.PacketDistributor;
+
 import javax.annotation.Nullable;
+
+import dev.dhyces.lunarnether.networking.packet.SyncLunarTimeS2CPacket;
+import org.jetbrains.annotations.NotNull;
 
 public class LunarTimeData extends SavedData {
     @Nullable
-    public static Level currentNether;
+    public static ServerLevel currentNether;
 
     private long daytime = 0;
-    private ResourceKey<Level> dimension;
 
     private LunarTimeData() {}
 
-    private LunarTimeData(CompoundTag tag) {
-        daytime = tag.getLong("daytime");
+    public static LunarTimeData create() {
+        return new LunarTimeData();
     }
 
-    public static LunarTimeData getOrCreate(ServerLevel level) {
-        LunarTimeData data = level.getDataStorage().computeIfAbsent(LunarTimeData::new, LunarTimeData::new, "lunarnether:time");
-        data.dimension = level.dimension();
+    public static LunarTimeData load(CompoundTag tag, HolderLookup.Provider lookupProvider) {
+        LunarTimeData data = LunarTimeData.create();
         return data;
     }
 
-    public long getDaytime() {
+    public static LunarTimeData getOrCreate(ServerLevel level) {
+        return level.getDataStorage().computeIfAbsent(new Factory<>(LunarTimeData::create, LunarTimeData::load), "lunarnether-daytime");
+    }
+
+    public long daytime() {
         return daytime;
     }
 
     public void update(long overworldDaytime) {
         if (daytime != overworldDaytime) {
             daytime = overworldDaytime;
-            LunarNetherNetwork.sendToPlayersInLevel(dimension, new SyncLunarTimeS2CPacket(daytime));
+            PacketDistributor.sendToPlayersInDimension(currentNether, new SyncLunarTimeS2CPacket(daytime));
             setDirty();
         }
     }
@@ -49,7 +55,7 @@ public class LunarTimeData extends SavedData {
     }
 
     @Override
-    public CompoundTag save(CompoundTag pCompoundTag) {
+    public @NotNull CompoundTag save(CompoundTag pCompoundTag, HolderLookup.@NotNull Provider provider) {
         pCompoundTag.putLong("daytime", daytime);
         return pCompoundTag;
     }

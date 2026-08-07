@@ -1,10 +1,11 @@
 package dev.dhyces.biomeextensions;
 
 import com.mojang.serialization.Codec;
-import dev.dhyces.biomeextensions.extension.ExtensionElement;
-import dev.dhyces.biomeextensions.extension.ExtensionElementType;
 
 import java.util.function.Supplier;
+
+import dev.dhyces.biomeextensions.extension.ExtensionElement;
+import dev.dhyces.biomeextensions.extension.ExtensionElementType;
 
 public interface ApiEntrypoint {
     void registerTypes(EffectTypeRegister registration);

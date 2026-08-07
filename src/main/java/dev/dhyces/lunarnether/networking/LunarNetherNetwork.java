@@ -1,36 +1,25 @@
 package dev.dhyces.lunarnether.networking;
 
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
+import net.neoforged.neoforge.network.registration.PayloadRegistrar;
+
 import dev.dhyces.lunarnether.LunarNether;
-import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.level.Level;
-import net.minecraftforge.network.NetworkDirection;
-import net.minecraftforge.network.NetworkRegistry;
-import net.minecraftforge.network.PacketDistributor;
-import net.minecraftforge.network.simple.SimpleChannel;
+import dev.dhyces.lunarnether.networking.handler.SyncLunarTimeHandler;
+import dev.dhyces.lunarnether.networking.packet.SyncLunarTimeS2CPacket;
 
+@EventBusSubscriber
 public class LunarNetherNetwork {
-    private static final String PROTOCOL_VERSION = "1";
-    private static SimpleChannel CHANNEL;
-
-    public static void register() {
-        int id = 0;
-
-        CHANNEL = NetworkRegistry.ChannelBuilder
-                .named(new ResourceLocation(LunarNether.MODID, "messages"))
-                .networkProtocolVersion(() -> PROTOCOL_VERSION)
-                .clientAcceptedVersions(PROTOCOL_VERSION::equals)
-                .serverAcceptedVersions(PROTOCOL_VERSION::equals)
-                .simpleChannel();
-
-        CHANNEL.messageBuilder(SyncLunarTimeS2CPacket.class, id++, NetworkDirection.PLAY_TO_CLIENT)
-                .decoder(SyncLunarTimeS2CPacket::new)
-                .encoder(SyncLunarTimeS2CPacket::encode)
-                .consumerMainThread(SyncLunarTimeS2CPacket::handle)
-                .add();
-    }
-
-    public static <T> void sendToPlayersInLevel(ResourceKey<Level> dimension, T message) {
-        CHANNEL.send(PacketDistributor.DIMENSION.with(() -> dimension), message);
+    @SubscribeEvent
+    public static void register(RegisterPayloadHandlersEvent event) {
+        final PayloadRegistrar registrar = event.registrar(LunarNether.MODID)
+            .versioned("1")
+            .optional();
+        registrar.playToClient(
+            SyncLunarTimeS2CPacket.TYPE,
+            SyncLunarTimeS2CPacket.STREAM_CODEC,
+            SyncLunarTimeHandler::handleClient
+        );
     }
 }
