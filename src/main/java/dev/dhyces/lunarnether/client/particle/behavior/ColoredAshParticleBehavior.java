@@ -1,4 +1,4 @@
-package dev.dhyces.lunarnether.client.particle;
+package dev.dhyces.lunarnether.client.particle.behavior;
 
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.BaseAshSmokeParticle;
@@ -9,10 +9,10 @@ import net.minecraft.util.RandomSource;
 
 import java.util.function.ToIntFunction;
 
-import dev.dhyces.lunarnether.particle.ColorRangeParticleOption;
+import dev.dhyces.lunarnether.client.particle.option.ColorRangeParticleOption;
 
-public class ColoredAshParticle extends BaseAshSmokeParticle {
-    protected ColoredAshParticle(ClientLevel pLevel, double pX, double pY, double pZ, double pXSpeed, double pYSpeed, double pZSpeed, float pQuadSizeMultiplier, SpriteSet pSprites, ToIntFunction<RandomSource> rgbColorFunc) {
+public class ColoredAshParticleBehavior extends BaseAshSmokeParticle {
+    protected ColoredAshParticleBehavior(ClientLevel pLevel, double pX, double pY, double pZ, double pXSpeed, double pYSpeed, double pZSpeed, float pQuadSizeMultiplier, SpriteSet pSprites, ToIntFunction<RandomSource> rgbColorFunc) {
         super(pLevel, pX, pY, pZ, 0.1f, -0.1f, 0.1f, pXSpeed, pYSpeed, pZSpeed, pQuadSizeMultiplier, pSprites, 0, 20, 0.0125f, false);
         int rgbColor = rgbColorFunc.applyAsInt(random);
         this.rCol = ((rgbColor >> 16) & 255) / 255f;
@@ -33,7 +33,7 @@ public class ColoredAshParticle extends BaseAshSmokeParticle {
             double xSpeed = (double)randomsource.nextFloat() * -1.9D * (double)randomsource.nextFloat() * 0.1D;
             double ySpeed = (double)randomsource.nextFloat() * -0.5D * (double)randomsource.nextFloat() * 0.1D * 5.0D;
             double zSpeed = (double)randomsource.nextFloat() * -1.9D * (double)randomsource.nextFloat() * 0.1D;
-            return new ColoredAshParticle(pLevel, pX, pY, pZ, xSpeed, ySpeed, zSpeed, 1, sprites, option::interpolate);
+            return new ColoredAshParticleBehavior(pLevel, pX, pY, pZ, xSpeed, ySpeed, zSpeed, 1, sprites, option::interpolate);
         }
     }
 }

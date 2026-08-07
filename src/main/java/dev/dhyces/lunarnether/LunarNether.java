@@ -14,9 +14,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import dev.dhyces.biomeextensions.BiomeExtensionsMod;
-import dev.dhyces.lunarnether.registry.ModBiomeModifiers;
 import dev.dhyces.lunarnether.registry.ModFeatures;
-import dev.dhyces.lunarnether.registry.ModBiomeSources;
 import dev.dhyces.lunarnether.registry.ModBlocks;
 import dev.dhyces.lunarnether.registry.ModCreativeModTabs;
 import dev.dhyces.lunarnether.registry.ModFluids;
@@ -33,13 +31,11 @@ public class LunarNether {
         BiomeExtensionsMod.init();
 
         ModFluids.Types.MOD_FLUID_TYPES.register(modEventBus);
-        ModFluids.REGISTRY.register(modEventBus);
+        ModFluids.Fluids.MOD_FLUIDS.register(modEventBus);
         ModBlocks.MOD_BLOCKS.register(modEventBus);
         ModItems.MOD_ITEMS.register(modEventBus);
         ModCreativeModTabs.MOD_CREATIVE_TABS.register(modEventBus);
         ModParticleTypes.MOD_PARTICLE_TYPES.register(modEventBus);
-        ModBiomeSources.REGISTRY.register(modEventBus);
-        ModBiomeModifiers.MOD_BIOME_MODIFIER_TYPES.register(modEventBus);
         ModFeatures.MOD_FEATURES.register(modEventBus);
     }
 

@@ -17,21 +17,20 @@ import net.neoforged.neoforge.client.gui.ConfigurationScreen;
 import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
 
 import dev.dhyces.lunarnether.client.dimensionspecialeffects.LunarNetherDimensionEffects;
-import dev.dhyces.lunarnether.client.particle.ColoredAshParticle;
+import dev.dhyces.lunarnether.client.particle.behavior.ColoredAshParticleBehavior;
 import dev.dhyces.lunarnether.registry.ModItems;
 import dev.dhyces.lunarnether.registry.ModParticleTypes;
 
 @Mod(value = LunarNether.MODID, dist = Dist.CLIENT)
 @EventBusSubscriber(modid = LunarNether.MODID, value = Dist.CLIENT)
 public final class LunarNetherClient {
-
-
     /**
      * A separate time value for the nether which controls light and sky rendering.
      * Increases 8 times slower than the normal overworld daytime.
      */
     public static long netherDayTime = 0;
 
+    public static final int LENGTH_OF_LUNAR_DAY = 24000*8;
 
     public LunarNetherClient(ModContainer container) {
         container.registerExtensionPoint(IConfigScreenFactory.class, ConfigurationScreen::new);
@@ -54,16 +53,12 @@ public final class LunarNetherClient {
     }
 
     private static void registerParticles(final RegisterParticleProvidersEvent event) {
-        event.registerSpriteSet(ModParticleTypes.COLORED_ASH, ColoredAshParticle.Provider::new);
+        event.registerSpriteSet(ModParticleTypes.COLORED_ASH.get(), ColoredAshParticleBehavior.Provider::new);
     }
 
     private static void netherSky(final RegisterDimensionSpecialEffectsEvent event) {
         event.register(BuiltinDimensionTypes.NETHER_EFFECTS, new LunarNetherDimensionEffects());
     }
-
-
-
-    public static final int LENGTH_OF_LUNAR_DAY = 24000*8;
 
     public static double eclipse() {
         double shiftedEclipse = LunarNetherClient.netherDayTime % LENGTH_OF_LUNAR_DAY - 12000;

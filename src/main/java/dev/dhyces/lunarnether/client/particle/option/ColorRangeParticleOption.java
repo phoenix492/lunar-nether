@@ -1,4 +1,4 @@
-package dev.dhyces.lunarnether.particle;
+package dev.dhyces.lunarnether.client.particle.option;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
