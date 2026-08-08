@@ -108,10 +108,10 @@ public class LunarNetherDimensionEffects extends DimensionSpecialEffects {
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
         RenderSystem.setShaderTexture(0, SUN_LOCATION);
         BufferBuilder sunBuilder = tesselator.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);
-        sunBuilder.addVertex(sunMatrix, -sunSize, 100, sunSize).setUv(1, 0).setColor(0);
-        sunBuilder.addVertex(sunMatrix, sunSize, 100, sunSize).setUv(0, 0).setColor(0);
-        sunBuilder.addVertex(sunMatrix, sunSize, 100, -sunSize).setUv(0, 1).setColor(0);
-        sunBuilder.addVertex(sunMatrix, -sunSize, 100, -sunSize).setUv(1, 1).setColor(0);
+        sunBuilder.addVertex(sunMatrix, -sunSize, 100, sunSize).setUv(0, 1).setColor(0);
+        sunBuilder.addVertex(sunMatrix, sunSize, 100, sunSize).setUv(1, 1).setColor(0);
+        sunBuilder.addVertex(sunMatrix, sunSize, 100, -sunSize).setUv(1, 0).setColor(0);
+        sunBuilder.addVertex(sunMatrix, -sunSize, 100, -sunSize).setUv(0, 0).setColor(0);
         BufferUploader.drawWithShader(sunBuilder.build());
 
         // setup for overworld
