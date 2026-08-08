@@ -1,7 +1,5 @@
 package dev.dhyces.lunarnether.mixin;
 
-import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.data.worldgen.DimensionTypes;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.TagKey;
@@ -41,12 +39,12 @@ public abstract class DimensionTypeMixin {
 
     @Inject(method = "timeOfDay", at = @At(value = "HEAD"), cancellable = true)
     private void getTimeOfDay(long pDayTime, CallbackInfoReturnable<Float> cir) {
-        Level level = LunarTimeData.currentNether;
+        ServerLevel level = LunarTimeData.currentNether;
         if (level != null && (Object) this == level.dimensionType()) {
             if (level.isClientSide()) {
                 cir.setReturnValue(LunarTimeData.netherTimeOfDay(LunarNetherClient.netherDayTime));
             } else {
-                cir.setReturnValue(LunarTimeData.netherTimeOfDay(LunarTimeData.getOrCreate((ServerLevel) level).daytime()));
+                cir.setReturnValue(LunarTimeData.netherTimeOfDay(LunarTimeData.getOrCreate(level).daytime()));
             }
         }
     }

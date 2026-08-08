@@ -1,6 +1,5 @@
 {
   "carvers": {
-//these are never called because of a vanilla bug, but Ratatosk made a workaround in biome modifiers
   },
   "downfall": 0.9,
   "effects": {
@@ -32,7 +31,6 @@
     "water_color": 4159204,
     "water_fog_color": 329011
   },
-//the position of things in the features array of arrays is important, surprisingly.
   "features": [
     [],
     ["lunarnether:crater_small"],
@@ -46,8 +44,6 @@
     [],
     []
   ],
-  //this SHOULD stop all rain and snow, but it doesn't???
-  //apparently snow accumulation is independent of percipitation and instead is controlled by temperature
   "has_precipitation": false,
   "spawn_costs": {},
   "spawners": {

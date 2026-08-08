@@ -32,17 +32,14 @@
           "Name": "lunarnether:lunar_stone"
         }
       },
-//required or it crashes 
       "inner_placements": [
         {
           "Name": "lunarnether:ilmenite_ore"
         }
       ],
-//also this is bugged and doesn't work
       "cannot_replace": "#minecraft:portals",
       "invalid_blocks": "#minecraft:portals"
     },
-//must be between 0 and 50, not inclusive.
     "layers": {
       "filling": 0.5,
       "inner_layer": 0.5,

@@ -2,12 +2,9 @@ package dev.dhyces.lunarnether.server.saveddata;
 
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.level.saveddata.SavedData;
-
 import net.neoforged.neoforge.network.PacketDistributor;
 
 import javax.annotation.Nullable;
@@ -28,8 +25,7 @@ public class LunarTimeData extends SavedData {
     }
 
     public static LunarTimeData load(CompoundTag tag, HolderLookup.Provider lookupProvider) {
-        LunarTimeData data = LunarTimeData.create();
-        return data;
+        return LunarTimeData.create();
     }
 
     public static LunarTimeData getOrCreate(ServerLevel level) {

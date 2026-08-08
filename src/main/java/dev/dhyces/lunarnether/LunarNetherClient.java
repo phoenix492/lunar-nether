@@ -5,7 +5,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.level.dimension.BuiltinDimensionTypes;
 import net.neoforged.api.distmarker.Dist;
-import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -37,11 +36,9 @@ public final class LunarNetherClient {
 
     @SubscribeEvent
     private static void registerItemProperties(FMLClientSetupEvent event) {
-        event.enqueueWork(() -> {
-            ItemProperties.register(ModItems.LUNAR_CLOCK.get(), ResourceLocation.fromNamespaceAndPath(LunarNether.MODID, "moon_phase"), (pStack, pLevel, pEntity, pSeed) ->
-                pLevel == null ? 0 : pLevel.getMoonPhase() / 8f
-            );
-        });
+        event.enqueueWork(() -> ItemProperties.register(ModItems.LUNAR_CLOCK.get(), ResourceLocation.fromNamespaceAndPath(LunarNether.MODID, "moon_phase"), (pStack, pLevel, pEntity, pSeed) ->
+            pLevel == null ? 0 : pLevel.getMoonPhase() / 8f
+        ));
     }
 
     @SubscribeEvent
