@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/inner_stairs",
-  "textures": {
-    "bottom": "lunarnether:block/cut_polished_lunar_stone",
-    "side": "lunarnether:block/cut_polished_lunar_stone",
-    "top": "lunarnether:block/cut_polished_lunar_stone"
-  }
-}

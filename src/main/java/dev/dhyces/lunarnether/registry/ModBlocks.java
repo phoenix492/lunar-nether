@@ -38,7 +38,7 @@ public class ModBlocks {
                 .mapColor(MapColor.QUARTZ)
         )
     );
-    public static final DeferredBlock<Block> LUNAR_STONE_STAIRS = MOD_BLOCKS.register(
+    public static final DeferredBlock<StairBlock> LUNAR_STONE_STAIRS = MOD_BLOCKS.register(
         "lunar_stone_stairs",
         () -> new StairBlock(
             LUNAR_STONE.get().defaultBlockState(),
@@ -47,7 +47,7 @@ public class ModBlocks {
                 .mapColor(MapColor.QUARTZ)
         )
     );
-    public static final DeferredBlock<Block> LUNAR_STONE_SLAB = MOD_BLOCKS.register(
+    public static final DeferredBlock<SlabBlock> LUNAR_STONE_SLAB = MOD_BLOCKS.register(
         "lunar_stone_slab",
         () -> new SlabBlock(
             BlockBehaviour.Properties.ofFullCopy(Blocks.DEEPSLATE)
@@ -55,7 +55,7 @@ public class ModBlocks {
                 .mapColor(MapColor.QUARTZ)
         )
     );
-    public static final DeferredBlock<Block> LUNAR_STONE_WALL = MOD_BLOCKS.register(
+    public static final DeferredBlock<WallBlock> LUNAR_STONE_WALL = MOD_BLOCKS.register(
         "lunar_stone_wall",
         () -> new WallBlock(
             BlockBehaviour.Properties.ofFullCopy(Blocks.DEEPSLATE)
@@ -73,7 +73,7 @@ public class ModBlocks {
                 .mapColor(MapColor.QUARTZ)
         )
     );
-    public static final DeferredBlock<Block> POLISHED_LUNAR_STONE_STAIRS = MOD_BLOCKS.register(
+    public static final DeferredBlock<StairBlock> POLISHED_LUNAR_STONE_STAIRS = MOD_BLOCKS.register(
         "polished_lunar_stone_stairs",
         () -> new StairBlock(
             POLISHED_LUNAR_STONE.get().defaultBlockState(),
@@ -82,7 +82,7 @@ public class ModBlocks {
                 .mapColor(MapColor.QUARTZ)
         )
     );
-    public static final DeferredBlock<Block> POLISHED_LUNAR_STONE_SLAB = MOD_BLOCKS.register(
+    public static final DeferredBlock<SlabBlock> POLISHED_LUNAR_STONE_SLAB = MOD_BLOCKS.register(
         "polished_lunar_stone_slab",
         () -> new SlabBlock(
             BlockBehaviour.Properties.ofFullCopy(Blocks.DEEPSLATE)
@@ -90,7 +90,7 @@ public class ModBlocks {
                 .mapColor(MapColor.QUARTZ)
         )
     );
-    public static final DeferredBlock<Block> POLISHED_LUNAR_STONE_WALL = MOD_BLOCKS.register(
+    public static final DeferredBlock<WallBlock> POLISHED_LUNAR_STONE_WALL = MOD_BLOCKS.register(
         "polished_lunar_stone_wall",
         () -> new WallBlock(
             BlockBehaviour.Properties.ofFullCopy(Blocks.DEEPSLATE)
@@ -107,7 +107,7 @@ public class ModBlocks {
                 .mapColor(MapColor.QUARTZ)
         )
     );
-    public static final DeferredBlock<Block> CUT_POLISHED_LUNAR_STONE_STAIRS = MOD_BLOCKS.register(
+    public static final DeferredBlock<StairBlock> CUT_POLISHED_LUNAR_STONE_STAIRS = MOD_BLOCKS.register(
         "cut_polished_lunar_stone_stairs",
         () -> new StairBlock(
             CUT_POLISHED_LUNAR_STONE.get().defaultBlockState(),
@@ -116,7 +116,7 @@ public class ModBlocks {
                 .mapColor(MapColor.QUARTZ)
         )
     );
-    public static final DeferredBlock<Block> CUT_POLISHED_LUNAR_STONE_SLAB = MOD_BLOCKS.register(
+    public static final DeferredBlock<SlabBlock> CUT_POLISHED_LUNAR_STONE_SLAB = MOD_BLOCKS.register(
         "cut_polished_lunar_stone_slab",
         () -> new SlabBlock(
             BlockBehaviour.Properties.ofFullCopy(Blocks.DEEPSLATE)
@@ -124,7 +124,7 @@ public class ModBlocks {
                 .mapColor(MapColor.QUARTZ)
         )
     );
-    public static final DeferredBlock<Block> CUT_POLISHED_LUNAR_STONE_WALL = MOD_BLOCKS.register(
+    public static final DeferredBlock<WallBlock> CUT_POLISHED_LUNAR_STONE_WALL = MOD_BLOCKS.register(
         "cut_polished_lunar_stone_wall",
         () -> new WallBlock(
             BlockBehaviour.Properties.ofFullCopy(Blocks.DEEPSLATE)
@@ -167,7 +167,7 @@ public class ModBlocks {
                 .mapColor(MapColor.METAL)
         )
     );
-    public static final DeferredBlock<Block> CUT_TITANIUM_STAIRS = MOD_BLOCKS.register(
+    public static final DeferredBlock<StairBlock> CUT_TITANIUM_STAIRS = MOD_BLOCKS.register(
         "cut_titanium_stairs",
         () -> new StairBlock(
             CUT_TITANIUM.get().defaultBlockState(),
@@ -176,7 +176,7 @@ public class ModBlocks {
                 .mapColor(MapColor.METAL)
         )
     );
-    public static final DeferredBlock<Block> CUT_TITANIUM_SLAB = MOD_BLOCKS.register(
+    public static final DeferredBlock<SlabBlock> CUT_TITANIUM_SLAB = MOD_BLOCKS.register(
         "cut_titanium_slab",
         () -> new SlabBlock(
             BlockBehaviour.Properties.ofFullCopy(Blocks.NETHERITE_BLOCK)
@@ -185,8 +185,14 @@ public class ModBlocks {
         )
     );
 
-    //Removed for consistiency with copper
-    //public static final DeferredBlock<Block> CUT_TITANIUM_WALL = REGISTRY.register("cut_titanium_wall", () -> new WallBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.NETHERITE_BLOCK).strength(3.0F, 16.0F).mapColor(MapColor.METAL)));
+    public static final DeferredBlock<WallBlock> CUT_TITANIUM_WALL = MOD_BLOCKS.register(
+        "cut_titanium_wall",
+        () -> new WallBlock(
+            BlockBehaviour.Properties.ofFullCopy(Blocks.NETHERITE_BLOCK)
+                .strength(3.0F, 16.0F)
+                .mapColor(MapColor.METAL)
+        )
+    );
 
     //Astralith
     public static final DeferredBlock<Block> ASTRALITH = MOD_BLOCKS.register(

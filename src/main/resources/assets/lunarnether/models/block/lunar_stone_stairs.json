@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/stairs",
-  "textures": {
-    "bottom": "lunarnether:block/lunar_stone",
-    "side": "lunarnether:block/lunar_stone",
-    "top": "lunarnether:block/lunar_stone"
-  }
-}

@@ -18,19 +18,19 @@ public class ModItems {
     public static final DeferredItem<Item> LUNAR_DUST = registerBlockItem("lunar_dust", ModBlocks.LUNAR_DUST);
 
     public static final DeferredItem<Item> LUNAR_STONE = registerBlockItem("lunar_stone", ModBlocks.LUNAR_STONE);
-    public static final DeferredItem<Item> LUNAR_STONE_STAIRS = registerBlockItem("lunar_stone_stairs", ModBlocks.LUNAR_STONE_STAIRS);
-    public static final DeferredItem<Item> LUNAR_STONE_SLAB = registerBlockItem("lunar_stone_slab", ModBlocks.LUNAR_STONE_SLAB);
-    public static final DeferredItem<Item> LUNAR_STONE_WALL = registerBlockItem("lunar_stone_wall", ModBlocks.LUNAR_STONE_WALL);
+    public static final DeferredItem<Item> LUNAR_STONE_STAIRS = registerBlockItem("lunar_stone_stairs", ModBlocks.LUNAR_STONE_STAIRS::get);
+    public static final DeferredItem<Item> LUNAR_STONE_SLAB = registerBlockItem("lunar_stone_slab", ModBlocks.LUNAR_STONE_SLAB::get);
+    public static final DeferredItem<Item> LUNAR_STONE_WALL = registerBlockItem("lunar_stone_wall", ModBlocks.LUNAR_STONE_WALL::get);
 
     public static final DeferredItem<Item> POLISHED_LUNAR_STONE = registerBlockItem("polished_lunar_stone", ModBlocks.POLISHED_LUNAR_STONE);
-    public static final DeferredItem<Item> POLISHED_LUNAR_STONE_STAIRS = registerBlockItem("polished_lunar_stone_stairs", ModBlocks.POLISHED_LUNAR_STONE_STAIRS);
-    public static final DeferredItem<Item> POLISHED_LUNAR_STONE_SLAB = registerBlockItem("polished_lunar_stone_slab", ModBlocks.POLISHED_LUNAR_STONE_SLAB);
-    public static final DeferredItem<Item> POLISHED_LUNAR_STONE_WALL = registerBlockItem("polished_lunar_stone_wall", ModBlocks.POLISHED_LUNAR_STONE_WALL);
+    public static final DeferredItem<Item> POLISHED_LUNAR_STONE_STAIRS = registerBlockItem("polished_lunar_stone_stairs", ModBlocks.POLISHED_LUNAR_STONE_STAIRS::get);
+    public static final DeferredItem<Item> POLISHED_LUNAR_STONE_SLAB = registerBlockItem("polished_lunar_stone_slab", ModBlocks.POLISHED_LUNAR_STONE_SLAB::get);
+    public static final DeferredItem<Item> POLISHED_LUNAR_STONE_WALL = registerBlockItem("polished_lunar_stone_wall", ModBlocks.POLISHED_LUNAR_STONE_WALL::get);
 
     public static final DeferredItem<Item> CUT_POLISHED_LUNAR_STONE = registerBlockItem("cut_polished_lunar_stone", ModBlocks.CUT_POLISHED_LUNAR_STONE);
-    public static final DeferredItem<Item> CUT_POLISHED_LUNAR_STONE_STAIRS = registerBlockItem("cut_polished_lunar_stone_stairs", ModBlocks.CUT_POLISHED_LUNAR_STONE_STAIRS);
-    public static final DeferredItem<Item> CUT_POLISHED_LUNAR_STONE_SLAB = registerBlockItem("cut_polished_lunar_stone_slab", ModBlocks.CUT_POLISHED_LUNAR_STONE_SLAB);
-    public static final DeferredItem<Item> CUT_POLISHED_LUNAR_STONE_WALL = registerBlockItem("cut_polished_lunar_stone_wall", ModBlocks.CUT_POLISHED_LUNAR_STONE_WALL);
+    public static final DeferredItem<Item> CUT_POLISHED_LUNAR_STONE_STAIRS = registerBlockItem("cut_polished_lunar_stone_stairs", ModBlocks.CUT_POLISHED_LUNAR_STONE_STAIRS::get);
+    public static final DeferredItem<Item> CUT_POLISHED_LUNAR_STONE_SLAB = registerBlockItem("cut_polished_lunar_stone_slab", ModBlocks.CUT_POLISHED_LUNAR_STONE_SLAB::get);
+    public static final DeferredItem<Item> CUT_POLISHED_LUNAR_STONE_WALL = registerBlockItem("cut_polished_lunar_stone_wall", ModBlocks.CUT_POLISHED_LUNAR_STONE_WALL::get);
 
     public static final DeferredItem<Item> ILMENITE_ORE = registerBlockItem("ilmenite_ore", ModBlocks.ILMENITE_ORE);
     public static final DeferredItem<Item> RAW_ILMENITE_BLOCK = registerBlockItem("raw_ilmenite_block", ModBlocks.RAW_ILMENITE_BLOCK);
@@ -38,10 +38,10 @@ public class ModItems {
     public static final DeferredItem<Item> TITANIUM_BLOCK = registerBlockItem("titanium_block", ModBlocks.TITANIUM_BLOCK);
 
     public static final DeferredItem<Item> CUT_TITANIUM = registerBlockItem("cut_titanium", ModBlocks.CUT_TITANIUM);
-    public static final DeferredItem<Item> CUT_TITANIUM_STAIRS = registerBlockItem("cut_titanium_stairs", ModBlocks.CUT_TITANIUM_STAIRS);
-    public static final DeferredItem<Item> CUT_TITANIUM_SLAB = registerBlockItem("cut_titanium_slab", ModBlocks.CUT_TITANIUM_SLAB);
-    //removed for consistiency with vanilla
-    //public static final DeferredItem<Item> CUT_TITANIUM_WALL = registerBlockItem("cut_titanium_wall", ModBlocks.CUT_TITANIUM_WALL);
+    public static final DeferredItem<Item> CUT_TITANIUM_STAIRS = registerBlockItem("cut_titanium_stairs", ModBlocks.CUT_TITANIUM_STAIRS::get);
+    public static final DeferredItem<Item> CUT_TITANIUM_SLAB = registerBlockItem("cut_titanium_slab", ModBlocks.CUT_TITANIUM_SLAB::get);
+
+    public static final DeferredItem<Item> CUT_TITANIUM_WALL = registerBlockItem("cut_titanium_wall", ModBlocks.CUT_TITANIUM_WALL::get);
 
     public static final DeferredItem<Item> RAW_ILMENITE = MOD_ITEMS.register("raw_ilmenite", () -> new Item(new Item.Properties()));
     public static final DeferredItem<Item> TITANIUM_INGOT = MOD_ITEMS.register("titanium_ingot", () -> new Item(new Item.Properties()));

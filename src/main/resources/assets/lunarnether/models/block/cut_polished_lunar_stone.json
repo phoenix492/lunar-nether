@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:block/cube_all",
-  "textures": {
-    "all": "lunarnether:block/cut_polished_lunar_stone"
-  }
-}
