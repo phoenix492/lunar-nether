@@ -33,6 +33,12 @@ public class LunarNetherDimensionEffects extends DimensionSpecialEffects {
     private static final ResourceLocation OVERWORLD_LOCATION = ResourceLocation.fromNamespaceAndPath(LunarNether.MODID, "textures/environment/overworld_phases.png");
     private static final ResourceLocation OVERWORLD_GLOW_LOCATION = ResourceLocation.fromNamespaceAndPath(LunarNether.MODID, "textures/environment/overworld_glow.png");
 
+    // Rendering Values
+    private static final float overworldSize = 30f;
+    private static final float sunSize = 30f;
+    private static final int skyboxDistance = 2000;
+
+
     private static VertexBuffer skyBuffer;
     private static VertexBuffer starsBuffer;
 
@@ -79,7 +85,13 @@ public class LunarNetherDimensionEffects extends DimensionSpecialEffects {
     public boolean renderSky(ClientLevel level, int ticks, float partialTick, Matrix4f modelViewMatrix, Camera camera, Matrix4f projectionMatrix, boolean isFoggy, Runnable setupFog) {
         if (camera.getPosition().y < 128) {
             return false;
+        } else {
+            renderLunarNetherSkybox(level, modelViewMatrix, projectionMatrix);
+            return true;
         }
+    }
+
+    private void renderLunarNetherSkybox(ClientLevel level, Matrix4f modelViewMatrix, Matrix4f projectionMatrix) {
 
         Tesselator tesselator = Tesselator.getInstance();
         Matrix4f starMatrix = new Matrix4f(modelViewMatrix).rotateY((float) Math.toRadians(-90F));
@@ -89,8 +101,8 @@ public class LunarNetherDimensionEffects extends DimensionSpecialEffects {
 
         // rotate for time of day
         float timeAngle = LunarTimeData.netherTimeOfDay(LunarNetherClient.netherDayTime) * 360.0F;
-        starMatrix.rotateX((float) Math.toRadians(timeAngle));
-        sunMatrix.rotateX((float) Math.toRadians(timeAngle));
+        starMatrix.rotateX(-(float) Math.toRadians(timeAngle));
+        sunMatrix.rotateX(-(float) Math.toRadians(timeAngle));
 
         // render stars
         RenderSystem.setShader(GameRenderer::getPositionColorShader);
@@ -102,20 +114,19 @@ public class LunarNetherDimensionEffects extends DimensionSpecialEffects {
         }
 
         // render sun
-        float sunSize = 30f;
         RenderSystem.enableBlend();
         RenderSystem.blendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
         RenderSystem.setShaderTexture(0, SUN_LOCATION);
         BufferBuilder sunBuilder = tesselator.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);
-        sunBuilder.addVertex(sunMatrix, -sunSize, 100, sunSize).setUv(0, 1).setColor(0);
-        sunBuilder.addVertex(sunMatrix, sunSize, 100, sunSize).setUv(1, 1).setColor(0);
-        sunBuilder.addVertex(sunMatrix, sunSize, 100, -sunSize).setUv(1, 0).setColor(0);
-        sunBuilder.addVertex(sunMatrix, -sunSize, 100, -sunSize).setUv(0, 0).setColor(0);
+        sunBuilder.addVertex(sunMatrix, -sunSize, 100, -sunSize).setUv(0, 0);
+        sunBuilder.addVertex(sunMatrix, sunSize, 100, -sunSize).setUv(1, 0);
+        sunBuilder.addVertex(sunMatrix, sunSize, 100, sunSize).setUv(1, 1);
+        sunBuilder.addVertex(sunMatrix, -sunSize, 100, sunSize).setUv(0, 1);
         BufferUploader.drawWithShader(sunBuilder.build());
 
-        // setup for overworld
 
+        // setup for overworld
         //how many degrees up from the west is it, 0 is below you.
         //125 is the exact middle of the first moon phase because
         //the sun is measured from the bottom of the sprite but the earth is measured from the middle,
@@ -124,7 +135,6 @@ public class LunarNetherDimensionEffects extends DimensionSpecialEffects {
         overworldGlowMatrix.rotateX((float) Math.toRadians(-125.0F));
 
         // render overworld
-        float overworldSize = 30f;
         int phase = (int)(level.dayTime() * 7 / 24000 % 8L);
         int x = phase % 4;
         int y = phase / 4 % 2;
@@ -155,45 +165,41 @@ public class LunarNetherDimensionEffects extends DimensionSpecialEffects {
         overworldGlowBuilder.addVertex(overworldGlowMatrix, overworldSize, -100, -overworldSize).setUv(eclipseMinU, eclipseMinV).setColor(0);
         overworldGlowBuilder.addVertex(overworldGlowMatrix, -overworldSize, -100, -overworldSize).setUv(eclipseMaxU, eclipseMinV).setColor(0);
         BufferUploader.drawWithShader(overworldGlowBuilder.build());
-
-        return true;
     }
 
     private static MeshData drawSky(Tesselator tesselator) {
         BufferBuilder builder = tesselator.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_COLOR);
 
-        int distance = 2000;
-
         // draw a black cube instead of the default sky
-        builder.addVertex(-distance, -distance, -distance).setColor(0);
-        builder.addVertex(-distance, -distance, distance).setColor(0);
-        builder.addVertex(distance, -distance, distance).setColor(0);
-        builder.addVertex(distance, -distance, -distance).setColor(0);
+        builder.addVertex(-skyboxDistance, -skyboxDistance, -skyboxDistance).setColor(0);
+        builder.addVertex(-skyboxDistance, -skyboxDistance, skyboxDistance).setColor(0);
+        builder.addVertex(skyboxDistance, -skyboxDistance, skyboxDistance).setColor(0);
+        builder.addVertex(skyboxDistance, -skyboxDistance, -skyboxDistance).setColor(0);
 
-        builder.addVertex(-distance, distance, -distance).setColor(0);
-        builder.addVertex(-distance, -distance, -distance).setColor(0);
-        builder.addVertex(distance, -distance, -distance).setColor(0);
-        builder.addVertex(distance, distance, -distance).setColor(0);
+        builder.addVertex(-skyboxDistance, skyboxDistance, -skyboxDistance).setColor(0);
+        builder.addVertex(-skyboxDistance, -skyboxDistance, -skyboxDistance).setColor(0);
+        builder.addVertex(skyboxDistance, -skyboxDistance, -skyboxDistance).setColor(0);
+        builder.addVertex(skyboxDistance, skyboxDistance, -skyboxDistance).setColor(0);
 
-        builder.addVertex(-distance, -distance, distance).setColor(0);
-        builder.addVertex(-distance, distance, distance).setColor(0);
-        builder.addVertex(distance, distance, distance).setColor(0);
-        builder.addVertex(distance, -distance, distance).setColor(0);
+        builder.addVertex(-skyboxDistance, -skyboxDistance, skyboxDistance).setColor(0);
+        builder.addVertex(-skyboxDistance, skyboxDistance, skyboxDistance).setColor(0);
+        builder.addVertex(skyboxDistance, skyboxDistance, skyboxDistance).setColor(0);
+        builder.addVertex(skyboxDistance, -skyboxDistance, skyboxDistance).setColor(0);
 
-        builder.addVertex(distance, -distance, -distance).setColor(0);
-        builder.addVertex(distance, -distance, distance).setColor(0);
-        builder.addVertex(distance, distance, distance).setColor(0);
-        builder.addVertex(distance, distance, -distance).setColor(0);
+        builder.addVertex(skyboxDistance, -skyboxDistance, -skyboxDistance).setColor(0);
+        builder.addVertex(skyboxDistance, -skyboxDistance, skyboxDistance).setColor(0);
+        builder.addVertex(skyboxDistance, skyboxDistance, skyboxDistance).setColor(0);
+        builder.addVertex(skyboxDistance, skyboxDistance, -skyboxDistance).setColor(0);
 
-        builder.addVertex(-distance, -distance, distance).setColor(0);
-        builder.addVertex(-distance, -distance, -distance).setColor(0);
-        builder.addVertex(-distance, distance, -distance).setColor(0);
-        builder.addVertex(-distance, distance, distance).setColor(0);
+        builder.addVertex(-skyboxDistance, -skyboxDistance, skyboxDistance).setColor(0);
+        builder.addVertex(-skyboxDistance, -skyboxDistance, -skyboxDistance).setColor(0);
+        builder.addVertex(-skyboxDistance, skyboxDistance, -skyboxDistance).setColor(0);
+        builder.addVertex(-skyboxDistance, skyboxDistance, skyboxDistance).setColor(0);
 
-        builder.addVertex(-distance, distance, distance).setColor(0);
-        builder.addVertex(-distance, distance, -distance).setColor(0);
-        builder.addVertex(distance, distance, -distance).setColor(0);
-        builder.addVertex(distance, distance, distance).setColor(0);
+        builder.addVertex(-skyboxDistance, skyboxDistance, skyboxDistance).setColor(0);
+        builder.addVertex(-skyboxDistance, skyboxDistance, -skyboxDistance).setColor(0);
+        builder.addVertex(skyboxDistance, skyboxDistance, -skyboxDistance).setColor(0);
+        builder.addVertex(skyboxDistance, skyboxDistance, skyboxDistance).setColor(0);
 
         return builder.build();
     }
