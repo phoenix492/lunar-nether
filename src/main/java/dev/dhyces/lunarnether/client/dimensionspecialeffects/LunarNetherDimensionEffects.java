@@ -82,15 +82,10 @@ public class LunarNetherDimensionEffects extends DimensionSpecialEffects {
         }
 
         Tesselator tesselator = Tesselator.getInstance();
-
-
-        Matrix4f starMatrix = new Matrix4f(modelViewMatrix);
-        Matrix4f sunMatrix =  new Matrix4f(modelViewMatrix);
-
-
-        // setup for sun and stars
-        starMatrix.rotateY((float) Math.toRadians(-90F));
-        sunMatrix.rotateY((float) Math.toRadians(-90F));
+        Matrix4f starMatrix = new Matrix4f(modelViewMatrix).rotateY((float) Math.toRadians(-90F));
+        Matrix4f sunMatrix =  new Matrix4f(modelViewMatrix).rotateY((float) Math.toRadians(-90F));
+        Matrix4f overworldMatrix = new Matrix4f(modelViewMatrix).rotateY((float) Math.toRadians(-90F));
+        Matrix4f overworldGlowMatrix = new Matrix4f(modelViewMatrix).rotateY((float) Math.toRadians(-90F));
 
         // rotate for time of day
         float timeAngle = LunarTimeData.netherTimeOfDay(LunarNetherClient.netherDayTime) * 360.0F;
@@ -112,20 +107,14 @@ public class LunarNetherDimensionEffects extends DimensionSpecialEffects {
         RenderSystem.blendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
         RenderSystem.setShaderTexture(0, SUN_LOCATION);
-
         BufferBuilder sunBuilder = tesselator.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);
-        sunBuilder.addVertex(sunMatrix, -sunSize, 100, -sunSize).setUv(0, 0);
-        sunBuilder.addVertex(sunMatrix, sunSize, 100, -sunSize).setUv(1, 0);
-        sunBuilder.addVertex(sunMatrix, sunSize, 100, sunSize).setUv(1, 1);
-        sunBuilder.addVertex(sunMatrix, -sunSize, 100, sunSize).setUv(0, 1);
-        BufferUploader.draw(sunBuilder.build());
+        sunBuilder.addVertex(sunMatrix, -sunSize, 100, sunSize).setUv(1, 0).setColor(0);
+        sunBuilder.addVertex(sunMatrix, sunSize, 100, sunSize).setUv(0, 0).setColor(0);
+        sunBuilder.addVertex(sunMatrix, sunSize, 100, -sunSize).setUv(0, 1).setColor(0);
+        sunBuilder.addVertex(sunMatrix, -sunSize, 100, -sunSize).setUv(1, 1).setColor(0);
+        BufferUploader.drawWithShader(sunBuilder.build());
 
         // setup for overworld
-        Matrix4f overworldMatrix = new Matrix4f(modelViewMatrix);
-        Matrix4f overworldGlowMatrix = new Matrix4f(modelViewMatrix);
-
-        overworldMatrix.rotateY((float) Math.toRadians(-90F));
-        overworldGlowMatrix.rotateY((float) Math.toRadians(-90F));
 
         //how many degrees up from the west is it, 0 is below you.
         //125 is the exact middle of the first moon phase because
@@ -134,7 +123,7 @@ public class LunarNetherDimensionEffects extends DimensionSpecialEffects {
         overworldMatrix.rotateX((float) Math.toRadians(-125.0F));
         overworldGlowMatrix.rotateX((float) Math.toRadians(-125.0F));
 
-        // render earth
+        // render overworld
         float overworldSize = 30f;
         int phase = (int)(level.dayTime() * 7 / 24000 % 8L);
         int x = phase % 4;
@@ -146,10 +135,10 @@ public class LunarNetherDimensionEffects extends DimensionSpecialEffects {
         RenderSystem.defaultBlendFunc();
         RenderSystem.setShaderTexture(0, OVERWORLD_LOCATION);
         BufferBuilder overworldBuilder = tesselator.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);
-        overworldBuilder.addVertex(overworldMatrix, -overworldSize, -100, overworldSize).setUv(maxU, maxV);
-        overworldBuilder.addVertex(overworldMatrix, overworldSize, -100, overworldSize).setUv(minU, maxV);
-        overworldBuilder.addVertex(overworldMatrix, overworldSize, -100, -overworldSize).setUv(minU, minV);
-        overworldBuilder.addVertex(overworldMatrix, -overworldSize, -100, -overworldSize).setUv(maxU, minV);
+        overworldBuilder.addVertex(overworldMatrix, -overworldSize, -100, overworldSize).setUv(maxU, maxV).setColor(0);
+        overworldBuilder.addVertex(overworldMatrix, overworldSize, -100, overworldSize).setUv(minU, maxV).setColor(0);
+        overworldBuilder.addVertex(overworldMatrix, overworldSize, -100, -overworldSize).setUv(minU, minV).setColor(0);
+        overworldBuilder.addVertex(overworldMatrix, -overworldSize, -100, -overworldSize).setUv(maxU, minV).setColor(0);
         BufferUploader.drawWithShader(overworldBuilder.build());
 
         int eclipsePhase = (level.getMoonPhase() + 4) % 8;
@@ -161,10 +150,10 @@ public class LunarNetherDimensionEffects extends DimensionSpecialEffects {
         float eclipseMaxV = (float) (eclipseY + 1) / 2.0F;
         RenderSystem.setShaderTexture(0, OVERWORLD_GLOW_LOCATION);
         BufferBuilder overworldGlowBuilder = tesselator.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);
-        overworldGlowBuilder.addVertex(overworldGlowMatrix, -overworldSize, -100, overworldSize).setUv(eclipseMaxU, eclipseMaxV);
-        overworldGlowBuilder.addVertex(overworldGlowMatrix, overworldSize, -100, overworldSize).setUv(eclipseMinU, eclipseMaxV);
-        overworldGlowBuilder.addVertex(overworldGlowMatrix, overworldSize, -100, -overworldSize).setUv(eclipseMinU, eclipseMinV);
-        overworldGlowBuilder.addVertex(overworldGlowMatrix, -overworldSize, -100, -overworldSize).setUv(eclipseMaxU, eclipseMinV);
+        overworldGlowBuilder.addVertex(overworldGlowMatrix, -overworldSize, -100, overworldSize).setUv(eclipseMaxU, eclipseMaxV).setColor(0);
+        overworldGlowBuilder.addVertex(overworldGlowMatrix, overworldSize, -100, overworldSize).setUv(eclipseMinU, eclipseMaxV).setColor(0);
+        overworldGlowBuilder.addVertex(overworldGlowMatrix, overworldSize, -100, -overworldSize).setUv(eclipseMinU, eclipseMinV).setColor(0);
+        overworldGlowBuilder.addVertex(overworldGlowMatrix, -overworldSize, -100, -overworldSize).setUv(eclipseMaxU, eclipseMinV).setColor(0);
         BufferUploader.drawWithShader(overworldGlowBuilder.build());
 
         return true;
@@ -176,35 +165,35 @@ public class LunarNetherDimensionEffects extends DimensionSpecialEffects {
         int distance = 2000;
 
         // draw a black cube instead of the default sky
-        builder.addVertex(-distance, -distance, -distance);
-        builder.addVertex(-distance, -distance, distance);
-        builder.addVertex(distance, -distance, distance);
-        builder.addVertex(distance, -distance, -distance);
+        builder.addVertex(-distance, -distance, -distance).setColor(0);
+        builder.addVertex(-distance, -distance, distance).setColor(0);
+        builder.addVertex(distance, -distance, distance).setColor(0);
+        builder.addVertex(distance, -distance, -distance).setColor(0);
 
-        builder.addVertex(-distance, distance, -distance);
-        builder.addVertex(-distance, -distance, -distance);
-        builder.addVertex(distance, -distance, -distance);
-        builder.addVertex(distance, distance, -distance);
+        builder.addVertex(-distance, distance, -distance).setColor(0);
+        builder.addVertex(-distance, -distance, -distance).setColor(0);
+        builder.addVertex(distance, -distance, -distance).setColor(0);
+        builder.addVertex(distance, distance, -distance).setColor(0);
 
-        builder.addVertex(-distance, -distance, distance);
-        builder.addVertex(-distance, distance, distance);
-        builder.addVertex(distance, distance, distance);
-        builder.addVertex(distance, -distance, distance);
+        builder.addVertex(-distance, -distance, distance).setColor(0);
+        builder.addVertex(-distance, distance, distance).setColor(0);
+        builder.addVertex(distance, distance, distance).setColor(0);
+        builder.addVertex(distance, -distance, distance).setColor(0);
 
-        builder.addVertex(distance, -distance, -distance);
-        builder.addVertex(distance, -distance, distance);
-        builder.addVertex(distance, distance, distance);
-        builder.addVertex(distance, distance, -distance);
+        builder.addVertex(distance, -distance, -distance).setColor(0);
+        builder.addVertex(distance, -distance, distance).setColor(0);
+        builder.addVertex(distance, distance, distance).setColor(0);
+        builder.addVertex(distance, distance, -distance).setColor(0);
 
-        builder.addVertex(-distance, -distance, distance);
-        builder.addVertex(-distance, -distance, -distance);
-        builder.addVertex(-distance, distance, -distance);
-        builder.addVertex(-distance, distance, distance);
+        builder.addVertex(-distance, -distance, distance).setColor(0);
+        builder.addVertex(-distance, -distance, -distance).setColor(0);
+        builder.addVertex(-distance, distance, -distance).setColor(0);
+        builder.addVertex(-distance, distance, distance).setColor(0);
 
-        builder.addVertex(-distance, distance, distance);
-        builder.addVertex(-distance, distance, -distance);
-        builder.addVertex(distance, distance, -distance);
-        builder.addVertex(distance, distance, distance);
+        builder.addVertex(-distance, distance, distance).setColor(0);
+        builder.addVertex(-distance, distance, -distance).setColor(0);
+        builder.addVertex(distance, distance, -distance).setColor(0);
+        builder.addVertex(distance, distance, distance).setColor(0);
 
         return builder.build();
     }

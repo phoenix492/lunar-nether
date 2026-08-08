@@ -5,15 +5,13 @@ import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.resources.ResourceLocation;
 
-import net.neoforged.neoforge.network.handling.IPayloadContext;
-
 import dev.dhyces.lunarnether.LunarNether;
-import dev.dhyces.lunarnether.LunarNetherClient;
 import io.netty.buffer.ByteBuf;
+import org.jetbrains.annotations.NotNull;
 
 public record SyncLunarTimeS2CPacket(long time) implements CustomPacketPayload {
 
-    public static final CustomPacketPayload.Type<SyncLunarTimeS2CPacket> TYPE = new CustomPacketPayload.Type<>(ResourceLocation.fromNamespaceAndPath(LunarNether.MODID, "syncLunarTimeS2C"));
+    public static final CustomPacketPayload.Type<SyncLunarTimeS2CPacket> TYPE = new CustomPacketPayload.Type<>(ResourceLocation.fromNamespaceAndPath(LunarNether.MODID, "sync_lunar_time_s2c"));
     public static final StreamCodec<ByteBuf, SyncLunarTimeS2CPacket> STREAM_CODEC = StreamCodec.composite(
         ByteBufCodecs.VAR_LONG,
         SyncLunarTimeS2CPacket::time,
@@ -21,11 +19,8 @@ public record SyncLunarTimeS2CPacket(long time) implements CustomPacketPayload {
     );
 
     @Override
-    public Type<? extends CustomPacketPayload> type() {
+    public @NotNull Type<? extends CustomPacketPayload> type() {
         return TYPE;
     }
 
-    public static void handle(SyncLunarTimeS2CPacket packet, IPayloadContext context) {
-        LunarNetherClient.netherDayTime = packet.time();
-    }
 }

@@ -29,6 +29,9 @@ sourceSets.main.resources {
 
 repositories {
     // Add here additional repositories if required by some of the dependencies below.
+    maven {
+        url = "https://api.modrinth.com/maven"
+    }
 }
 
 base {
@@ -137,6 +140,8 @@ dependencies {
     // For more info:
     // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
     // http://www.gradle.org/docs/current/userguide/dependency_management.html
+    implementation("maven.modrinth:XaDC71GB:qPASucBM")
+
 }
 
 // This block of code expands all declared replace properties in the specified resource targets.
@@ -159,6 +164,7 @@ var generateModMetadata = tasks.register("generateModMetadata", ProcessResources
     from "src/main/templates"
     into "build/generated/sources/modMetadata"
 }
+
 // Include the output of "generateModMetadata" as an input directory for the build
 // this works with both building through Gradle and the IDE.
 sourceSets.main.resources.srcDir generateModMetadata

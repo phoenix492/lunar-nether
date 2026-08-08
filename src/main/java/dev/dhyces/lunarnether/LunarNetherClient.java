@@ -29,18 +29,10 @@ public final class LunarNetherClient {
      * Increases 8 times slower than the normal overworld daytime.
      */
     public static long netherDayTime = 0;
-
     public static final int LENGTH_OF_LUNAR_DAY = 24000*8;
 
     public LunarNetherClient(ModContainer container) {
         container.registerExtensionPoint(IConfigScreenFactory.class, ConfigurationScreen::new);
-    }
-
-    static void register(IEventBus modBus) {
-        modBus.addListener(LunarNetherClient::registerItemProperties);
-        modBus.addListener(LunarNetherClient::registerParticles);
-        modBus.addListener(LunarNetherClient::netherSky);
-
     }
 
     @SubscribeEvent
@@ -52,11 +44,13 @@ public final class LunarNetherClient {
         });
     }
 
-    private static void registerParticles(final RegisterParticleProvidersEvent event) {
+    @SubscribeEvent
+    private static void registerParticles(RegisterParticleProvidersEvent event) {
         event.registerSpriteSet(ModParticleTypes.COLORED_ASH.get(), ColoredAshParticleBehavior.Provider::new);
     }
 
-    private static void netherSky(final RegisterDimensionSpecialEffectsEvent event) {
+    @SubscribeEvent
+    private static void netherSky(RegisterDimensionSpecialEffectsEvent event) {
         event.register(BuiltinDimensionTypes.NETHER_EFFECTS, new LunarNetherDimensionEffects());
     }
 

@@ -1,0 +1,10 @@
+{
+  "type": "lithostitched:force_placement",
+  "dimension": "minecraft:the_nether",
+  "parameters": {
+    "minecraft:y": {
+      "min_inclusive": 128
+    }
+  },
+  "biome": "lunarnether:outrocks"
+}

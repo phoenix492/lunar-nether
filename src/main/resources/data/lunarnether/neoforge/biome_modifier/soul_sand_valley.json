@@ -1,0 +1,6 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": ["minecraft:soul_sand_valley"],
+  "features": ["lunarnether:valley_surface_crater"],
+  "step": "lakes"
+}
