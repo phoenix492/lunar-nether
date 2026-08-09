@@ -75,10 +75,13 @@ public abstract class DimensionTypeMixin {
         }
     }
 
+    // Should be unnecessary. Only used for initially generating nether portals, which
+    // we'd rather not have appear on the surface anyway.
+    /*
     @Inject(method = "logicalHeight", at = @At(value = "HEAD"), cancellable = true)
     private void lunarnether$nether_logicalheight(CallbackInfoReturnable<Integer> cir) {
         if(this.effectsLocation().equals(BuiltinDimensionTypes.NETHER_EFFECTS)) {
             cir.setReturnValue(255);
         }
-    }
+    }*/
 }
