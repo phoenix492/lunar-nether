@@ -19,7 +19,9 @@ import dev.dhyces.lunarnether.datagen.client.ModBlockModelProvider;
 import dev.dhyces.lunarnether.datagen.client.ModBlockstateProvider;
 import dev.dhyces.lunarnether.datagen.client.ModItemModelProvider;
 import dev.dhyces.lunarnether.datagen.client.ModParticleDescriptionProvider;
+import dev.dhyces.lunarnether.datagen.server.ModAdvancementProvider;
 import dev.dhyces.lunarnether.datagen.server.ModBlockLootSubProvider;
+import dev.dhyces.lunarnether.datagen.server.ModDatapackProvider;
 import dev.dhyces.lunarnether.datagen.server.ModTagProviders;
 
 @EventBusSubscriber(modid = LunarNether.MODID)
@@ -42,6 +44,8 @@ public class DataGenerators {
         ModTagProviders.ModBlockTagProvider blockTagsProvider = generator.addProvider(event.includeServer(), new ModTagProviders.ModBlockTagProvider(packOutput, lookupProvider, existingFileHelper));
         generator.addProvider(event.includeServer(), new ModTagProviders.ModBiomeTagProvider(packOutput, lookupProvider, existingFileHelper));
         generator.addProvider(event.includeServer(), new ModTagProviders.ModItemTagProvider(packOutput, lookupProvider, blockTagsProvider.contentsGetter(), existingFileHelper));
+        //generator.addProvider(event.includeServer(), new ModAdvancementProvider(packOutput, lookupProvider, existingFileHelper));
+        generator.addProvider(event.includeServer(), new ModDatapackProvider(packOutput, lookupProvider));
         generator.addProvider(event.includeServer(), new LootTableProvider(
             packOutput,
             Set.of(),
@@ -53,10 +57,9 @@ public class DataGenerators {
             ),
             lookupProvider
         ));
-        /*
+      /*
         generator.addProvider(event.includeServer(), new ModEntityTypeTagsProvider(packOutput, lookupProvider, existingFileHelper));
         generator.addProvider(event.includeServer(), new ModDataMapProvider(packOutput, lookupProvider));
-        generator.addProvider(event.includeServer(), new ModDatapackProvider(packOutput, lookupProvider));
         generator.addProvider(event.includeServer(), new ModRecipeProvider(packOutput, lookupProvider));
        */
     }

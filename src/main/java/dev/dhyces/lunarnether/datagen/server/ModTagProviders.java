@@ -23,6 +23,7 @@ import java.util.concurrent.CompletableFuture;
 import dev.dhyces.lunarnether.LunarNether;
 import dev.dhyces.lunarnether.registry.ModBlocks;
 import dev.dhyces.lunarnether.registry.ModItems;
+import dev.dhyces.lunarnether.util.ModTagKeys;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -115,6 +116,11 @@ public class ModTagProviders {
                 .add(ModBlocks.LUNAR_STONE.get())
                 .add(ModBlocks.LUNAR_DUST.get())
                 .addTag(BlockTags.NETHER_CARVER_REPLACEABLES);
+
+            tag(ModTagKeys.Blocks.OUTROCK_BLOB_REPLACEABLES)
+                .add(Blocks.AIR)
+                .add(Blocks.NETHERRACK)
+                .add(ModBlocks.LUNAR_STONE.get());
 
         }
     }

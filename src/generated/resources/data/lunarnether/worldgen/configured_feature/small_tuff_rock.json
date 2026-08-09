@@ -2,7 +2,7 @@
   "type": "lunarnether:rock",
   "config": {
     "state": {
-      "Name": "lunarnether:lunar_stone"
+      "Name": "minecraft:tuff"
     }
   }
 }

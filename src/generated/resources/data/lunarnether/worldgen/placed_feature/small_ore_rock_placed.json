@@ -1,5 +1,5 @@
 {
-  "feature": "lunarnether:small_ore_rock",
+  "feature": "lunarnether:small_moonstone_rock",
   "placement": [
     {
       "type": "minecraft:rarity_filter",
@@ -7,11 +7,6 @@
     },
     {
       "type": "minecraft:in_square"
-    },
-    {
-      "type": "minecraft:random_offset",
-      "xz_spread": 5,
-      "y_spread": 0
     },
     {
       "type": "minecraft:heightmap",

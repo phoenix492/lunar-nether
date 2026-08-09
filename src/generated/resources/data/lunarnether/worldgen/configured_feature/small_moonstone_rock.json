@@ -2,7 +2,7 @@
   "type": "lunarnether:rock",
   "config": {
     "state": {
-      "Name": "lunarnether:ilmenite_ore"
+      "Name": "lunarnether:lunar_stone"
     }
   }
 }

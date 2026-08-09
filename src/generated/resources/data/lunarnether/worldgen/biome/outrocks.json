@@ -1,13 +1,13 @@
 {
-  "carvers": {
-  },
-  "downfall": 0.9,
+  "carvers": {},
+  "downfall": 0.0,
   "effects": {
     "additions_sound": {
       "sound": "minecraft:ambient.basalt_deltas.additions",
       "tick_chance": 0.0111
     },
     "ambient_sound": "minecraft:ambient.basalt_deltas.loop",
+    "fog_color": 0,
     "mood_sound": {
       "block_search_extent": 8,
       "offset": 2.0,
@@ -26,23 +26,30 @@
       },
       "probability": 0.025
     },
-    "fog_color": 0,
     "sky_color": 0,
     "water_color": 4159204,
     "water_fog_color": 329011
   },
   "features": [
     [],
-    ["lunarnether:crater_small"],
-    ["lunarnether:small_tuff_rock", "lunarnether:small_moonstone_rock", "lunarnether:small_ore_rock"],
+    [
+      "lunarnether:crater_small_placed"
+    ],
+    [
+      "lunarnether:small_tuff_rock_placed",
+      "lunarnether:small_moonstone_rock_placed",
+      "lunarnether:small_ore_rock_placed"
+    ],
     [],
     [],
-    ["lunarnether:air_disk"],
-    ["lunarnether:ore_ilmenite", "lunarnether:ore_nether_tuff","lunarnether:ore_nether_obsidian"],
-    [],
-    [],
-    [],
-    []
+    [
+      "lunarnether:air_disk_placed"
+    ],
+    [
+      "lunarnether:ore_ilmenite_placed",
+      "lunarnether:ore_nether_obsidian_placed",
+      "lunarnether:ore_nether_tuff_placed"
+    ]
   ],
   "has_precipitation": false,
   "spawn_costs": {},

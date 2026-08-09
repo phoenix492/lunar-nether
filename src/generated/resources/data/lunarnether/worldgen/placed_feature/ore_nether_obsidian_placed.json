@@ -1,5 +1,5 @@
 {
-  "feature": "lunarnether:ore_nether_tuff",
+  "feature": "lunarnether:ore_nether_obsidian",
   "placement": [
     {
       "type": "minecraft:rarity_filter",
@@ -17,15 +17,12 @@
       "height": {
         "type": "minecraft:uniform",
         "max_inclusive": {
-          "absolute": 132
+          "absolute": 124
         },
         "min_inclusive": {
-          "absolute": 128
+          "absolute": 120
         }
       }
-    },
-    {
-      "type": "minecraft:biome"
     }
   ]
 }
