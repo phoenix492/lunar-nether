@@ -11,10 +11,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "lunarnether:astralith"
+          "name": "lunarnether:cut_titanium_slab"
         }
       ],
       "rolls": 1.0
     }
-  ]
+  ],
+  "random_sequence": "lunarnether:blocks/cut_titanium_slab"
 }
