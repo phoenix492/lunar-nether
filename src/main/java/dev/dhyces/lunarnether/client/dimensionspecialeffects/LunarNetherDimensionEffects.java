@@ -98,8 +98,8 @@ public class LunarNetherDimensionEffects extends DimensionSpecialEffects {
         Tesselator tesselator = Tesselator.getInstance();
         Matrix4f starMatrix = new Matrix4f(modelViewMatrix).rotateY((float) Math.toRadians(-90F));
         Matrix4f sunMatrix =  new Matrix4f(modelViewMatrix).rotateY((float) Math.toRadians(-90F));
-        Matrix4f overworldMatrix = new Matrix4f(modelViewMatrix).rotateY((float) Math.toRadians(-90F));
-        Matrix4f overworldGlowMatrix = new Matrix4f(modelViewMatrix).rotateY((float) Math.toRadians(-90F));
+        Matrix4f overworldMatrix = new Matrix4f(modelViewMatrix).rotateY((float) Math.toRadians(90F));
+        Matrix4f overworldGlowMatrix = new Matrix4f(modelViewMatrix).rotateY((float) Math.toRadians(90F));
 
         // rotate for time of day
         float timeAngle = LunarTimeData.netherTimeOfDay(LunarNetherClient.netherDayTime) * 360.0F;
@@ -127,14 +127,13 @@ public class LunarNetherDimensionEffects extends DimensionSpecialEffects {
         sunBuilder.addVertex(sunMatrix, -SUN_SIZE, 100, SUN_SIZE).setUv(0, 1);
         BufferUploader.drawWithShader(sunBuilder.build());
 
-
         // setup for overworld
         //how many degrees up from the west is it, 0 is below you.
         //125 is the exact middle of the first moon phase because
         //the sun is measured from the bottom of the sprite but the earth is measured from the middle,
         //resulting in a difference of 12.5 degrees from where it would be.
-        overworldMatrix.rotateX((float) Math.toRadians(-125.0F));
-        overworldGlowMatrix.rotateX((float) Math.toRadians(-125.0F));
+        overworldMatrix.rotateX(-(float) Math.toRadians(-125.0F));
+        overworldGlowMatrix.rotateX(-(float) Math.toRadians(-125.0F));
 
         // render overworld
         int phase = (int)(level.dayTime() * 7 / 24000 % 8L);
@@ -147,10 +146,10 @@ public class LunarNetherDimensionEffects extends DimensionSpecialEffects {
         RenderSystem.defaultBlendFunc();
         RenderSystem.setShaderTexture(0, OVERWORLD_LOCATION);
         BufferBuilder overworldBuilder = tesselator.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);
-        overworldBuilder.addVertex(overworldMatrix, -OVERWORLD_SIZE, -100, OVERWORLD_SIZE).setUv(maxU, maxV).setColor(0);
-        overworldBuilder.addVertex(overworldMatrix, OVERWORLD_SIZE, -100, OVERWORLD_SIZE).setUv(minU, maxV).setColor(0);
-        overworldBuilder.addVertex(overworldMatrix, OVERWORLD_SIZE, -100, -OVERWORLD_SIZE).setUv(minU, minV).setColor(0);
-        overworldBuilder.addVertex(overworldMatrix, -OVERWORLD_SIZE, -100, -OVERWORLD_SIZE).setUv(maxU, minV).setColor(0);
+        overworldBuilder.addVertex(overworldMatrix, -OVERWORLD_SIZE, -100, OVERWORLD_SIZE).setUv(maxU, maxV);
+        overworldBuilder.addVertex(overworldMatrix, OVERWORLD_SIZE, -100, OVERWORLD_SIZE).setUv(minU, maxV);
+        overworldBuilder.addVertex(overworldMatrix, OVERWORLD_SIZE, -100, -OVERWORLD_SIZE).setUv(minU, minV);
+        overworldBuilder.addVertex(overworldMatrix, -OVERWORLD_SIZE, -100, -OVERWORLD_SIZE).setUv(maxU, minV);
         BufferUploader.drawWithShader(overworldBuilder.build());
 
         int eclipsePhase = (level.getMoonPhase() + 4) % 8;
@@ -162,10 +161,10 @@ public class LunarNetherDimensionEffects extends DimensionSpecialEffects {
         float eclipseMaxV = (float) (eclipseY + 1) / 2.0F;
         RenderSystem.setShaderTexture(0, OVERWORLD_GLOW_LOCATION);
         BufferBuilder overworldGlowBuilder = tesselator.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);
-        overworldGlowBuilder.addVertex(overworldGlowMatrix, -OVERWORLD_SIZE, -100, OVERWORLD_SIZE).setUv(eclipseMaxU, eclipseMaxV).setColor(0);
-        overworldGlowBuilder.addVertex(overworldGlowMatrix, OVERWORLD_SIZE, -100, OVERWORLD_SIZE).setUv(eclipseMinU, eclipseMaxV).setColor(0);
-        overworldGlowBuilder.addVertex(overworldGlowMatrix, OVERWORLD_SIZE, -100, -OVERWORLD_SIZE).setUv(eclipseMinU, eclipseMinV).setColor(0);
-        overworldGlowBuilder.addVertex(overworldGlowMatrix, -OVERWORLD_SIZE, -100, -OVERWORLD_SIZE).setUv(eclipseMaxU, eclipseMinV).setColor(0);
+        overworldGlowBuilder.addVertex(overworldGlowMatrix, -OVERWORLD_SIZE, -100, OVERWORLD_SIZE).setUv(eclipseMaxU, eclipseMaxV);
+        overworldGlowBuilder.addVertex(overworldGlowMatrix, OVERWORLD_SIZE, -100, OVERWORLD_SIZE).setUv(eclipseMinU, eclipseMaxV);
+        overworldGlowBuilder.addVertex(overworldGlowMatrix, OVERWORLD_SIZE, -100, -OVERWORLD_SIZE).setUv(eclipseMinU, eclipseMinV);
+        overworldGlowBuilder.addVertex(overworldGlowMatrix, -OVERWORLD_SIZE, -100, -OVERWORLD_SIZE).setUv(eclipseMaxU, eclipseMinV);
         BufferUploader.drawWithShader(overworldGlowBuilder.build());
     }
 
