@@ -1,4 +1,10 @@
 {
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "trimmed"
+    }
+  ],
   "asset_name": "titanium",
   "description": {
     "color": "#A8A0B0",
