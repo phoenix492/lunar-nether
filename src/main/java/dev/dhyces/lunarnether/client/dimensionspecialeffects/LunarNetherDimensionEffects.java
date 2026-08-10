@@ -19,6 +19,8 @@ import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.phys.Vec3;
 
+import net.neoforged.fml.ModList;
+
 import dev.dhyces.lunarnether.LunarNether;
 import dev.dhyces.lunarnether.LunarNetherClient;
 import dev.dhyces.lunarnether.server.saveddata.LunarTimeData;
@@ -44,6 +46,8 @@ public class LunarNetherDimensionEffects extends DimensionSpecialEffects {
     private static VertexBuffer skyBuffer;
     private static VertexBuffer starsBuffer;
 
+    private static boolean STELLAR_VIEW_LOADED;
+
     static {
         setup();
     }
@@ -65,6 +69,8 @@ public class LunarNetherDimensionEffects extends DimensionSpecialEffects {
         starsBuffer.bind();
         starsBuffer.upload(drawStars(tesselator));
         VertexBuffer.unbind();
+
+        STELLAR_VIEW_LOADED = ModList.get().isLoaded("stellarview");
     }
 
     @Override
@@ -85,7 +91,7 @@ public class LunarNetherDimensionEffects extends DimensionSpecialEffects {
 
     @Override
     public boolean renderSky(ClientLevel level, int ticks, float partialTick, Matrix4f modelViewMatrix, Camera camera, Matrix4f projectionMatrix, boolean isFoggy, Runnable setupFog) {
-        if (camera.getPosition().y < SKYBOX_START_Y) {
+        if (STELLAR_VIEW_LOADED || camera.getPosition().y < SKYBOX_START_Y) {
             return false;
         } else {
             renderLunarNetherSkybox(level, modelViewMatrix, projectionMatrix);

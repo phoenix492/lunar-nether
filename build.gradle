@@ -140,8 +140,17 @@ dependencies {
     // For more info:
     // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
     // http://www.gradle.org/docs/current/userguide/dependency_management.html
+
+    // Lithostitched
     implementation("maven.modrinth:XaDC71GB:qPASucBM")
+
+    // Patched
     implementation("maven.modrinth:IBlGrJtC:lsbqVn4T")
+
+    // Stellar View
+    localRuntime("maven.modrinth:Iairjv0A:QD13LaRR")
+
+    // Trimmed
     localRuntime("maven.modrinth:q8k4zHw5:wqxXFq0d")
 
 }
