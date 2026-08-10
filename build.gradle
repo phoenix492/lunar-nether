@@ -142,6 +142,7 @@ dependencies {
     // http://www.gradle.org/docs/current/userguide/dependency_management.html
     implementation("maven.modrinth:XaDC71GB:qPASucBM")
     implementation("maven.modrinth:IBlGrJtC:lsbqVn4T")
+    localRuntime("maven.modrinth:q8k4zHw5:wqxXFq0d")
 
 }
 
