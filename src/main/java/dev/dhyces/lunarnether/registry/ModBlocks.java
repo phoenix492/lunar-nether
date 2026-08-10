@@ -1,20 +1,46 @@
 package dev.dhyces.lunarnether.registry;
 
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.CopperBulbBlock;
+import net.minecraft.world.level.block.DoorBlock;
 import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.StairBlock;
+import net.minecraft.world.level.block.TrapDoorBlock;
 import net.minecraft.world.level.block.WallBlock;
+import net.minecraft.world.level.block.WaterloggedTransparentBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.material.MapColor;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 import dev.dhyces.lunarnether.LunarNether;
+import dev.dhyces.lunarnether.block.TitaniumBulbBlock;
 
 public class ModBlocks {
     public static final DeferredRegister.Blocks MOD_BLOCKS = DeferredRegister.createBlocks(LunarNether.MODID);
+
+    public static final BlockSetType TITANIUM = BlockSetType.register(
+        new BlockSetType(
+            "titanium",
+            true,
+            true,
+            false,
+            BlockSetType.PressurePlateSensitivity.EVERYTHING,
+            SoundType.COPPER,
+            SoundEvents.COPPER_DOOR_CLOSE,
+            SoundEvents.COPPER_DOOR_OPEN,
+            SoundEvents.COPPER_TRAPDOOR_CLOSE,
+            SoundEvents.COPPER_TRAPDOOR_OPEN,
+            SoundEvents.METAL_PRESSURE_PLATE_CLICK_OFF,
+            SoundEvents.METAL_PRESSURE_PLATE_CLICK_ON,
+            SoundEvents.STONE_BUTTON_CLICK_OFF,
+            SoundEvents.STONE_BUTTON_CLICK_ON
+        )
+    );
 
     //Moondust
     public static final DeferredBlock<Block> LUNAR_DUST = MOD_BLOCKS.register(
@@ -201,6 +227,60 @@ public class ModBlocks {
                 .mapColor(MapColor.TERRACOTTA_CYAN)
         )
     );
+
+    public static final DeferredBlock<Block> CHISELED_TITANIUM = MOD_BLOCKS.register(
+        "chiseled_titanium",
+        () -> new Block(
+            BlockBehaviour.Properties.ofFullCopy(Blocks.NETHERITE_BLOCK)
+                .strength(3.0F, 16.0F)
+                .mapColor(MapColor.METAL)
+        )
+    );
+
+    public static final DeferredBlock<Block> TITANIUM_DOOR = MOD_BLOCKS.register(
+        "titanium_door",
+        () -> new DoorBlock(
+            TITANIUM,
+            BlockBehaviour.Properties.ofFullCopy(Blocks.NETHERITE_BLOCK)
+                .strength(3.0F, 16.0F)
+                .mapColor(MapColor.METAL)
+        )
+    );
+
+    public static final DeferredBlock<Block> TITANIUM_TRAPDOOR = MOD_BLOCKS.register(
+        "titanium_trapdoor",
+        () -> new TrapDoorBlock(
+            TITANIUM,
+            BlockBehaviour.Properties.ofFullCopy(Blocks.NETHERITE_BLOCK)
+                .strength(3.0F, 16.0F)
+                .mapColor(MapColor.METAL)
+        )
+    );
+
+    public static final DeferredBlock<Block> TITANIUM_GRATE = MOD_BLOCKS.register(
+        "titanium_grate",
+        () -> new WaterloggedTransparentBlock(
+            BlockBehaviour.Properties.ofFullCopy(Blocks.NETHERITE_BLOCK)
+                .isValidSpawn(Blocks::never)
+                .isRedstoneConductor(Blocks::never)
+                .isSuffocating(Blocks::never)
+                .isViewBlocking(Blocks::never)
+                .noOcclusion()
+                .strength(3.0F, 16.0F)
+                .mapColor(MapColor.METAL)
+        )
+    );
+
+    public static final DeferredBlock<Block> TITANIUM_BULB = MOD_BLOCKS.register(
+        "titanium_bulb",
+        () -> new TitaniumBulbBlock(
+            BlockBehaviour.Properties.ofFullCopy(Blocks.NETHERITE_BLOCK)
+                .strength(3.0F, 16.0F)
+                .mapColor(MapColor.METAL)
+        )
+    );
+
+
     /*
     public static final DeferredBlock<LiquidBlock> MOLTEN_TITANIUM = MOD_BLOCKS.register(
         "molten_titanium",

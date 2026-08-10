@@ -41,6 +41,13 @@ public class ModItems {
 
     public static final DeferredItem<Item> CUT_TITANIUM_WALL = registerBlockItem("cut_titanium_wall", ModBlocks.CUT_TITANIUM_WALL::get);
 
+    public static final DeferredItem<Item> CHISELED_TITANIUM = registerBlockItem("chiseled_titanium", ModBlocks.CHISELED_TITANIUM);
+    public static final DeferredItem<Item> TITANIUM_DOOR = registerBlockItem("titanium_door", ModBlocks.TITANIUM_DOOR);
+    public static final DeferredItem<Item> TITANIUM_TRAPDOOR = registerBlockItem("titanium_trapdoor", ModBlocks.TITANIUM_TRAPDOOR);
+    public static final DeferredItem<Item> TITANIUM_GRATE = registerBlockItem("titanium_grate", ModBlocks.TITANIUM_GRATE);
+    public static final DeferredItem<Item> TITANIUM_BULB = registerBlockItem("titanium_bulb", ModBlocks.TITANIUM_BULB);
+
+
     public static final DeferredItem<Item> RAW_ILMENITE = MOD_ITEMS.register("raw_ilmenite", () -> new Item(new Item.Properties()));
     public static final DeferredItem<Item> TITANIUM_INGOT = MOD_ITEMS.register("titanium_ingot", () -> new Item(new Item.Properties()));
     public static final DeferredItem<Item> TITANIUM_NUGGET = MOD_ITEMS.register("titanium_nugget", () -> new Item(new Item.Properties()));
