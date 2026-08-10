@@ -73,6 +73,9 @@ public class ModBiomes {
                             GenerationStep.Decoration.LAKES,
                             placedFeatures.getOrThrow(ModPlacedFeatures.CRATER_SMALL_PLACED)
                         ).addFeature(
+                            GenerationStep.Decoration.LAKES,
+                            placedFeatures.getOrThrow(ModPlacedFeatures.BIG_CRATER_PLACED)
+                        ).addFeature(
                             GenerationStep.Decoration.LOCAL_MODIFICATIONS,
                             placedFeatures.getOrThrow(ModPlacedFeatures.SMALL_TUFF_ROCK_PLACED)
                         ).addFeature(

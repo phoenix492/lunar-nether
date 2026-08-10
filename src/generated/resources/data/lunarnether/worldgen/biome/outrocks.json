@@ -33,7 +33,8 @@
   "features": [
     [],
     [
-      "lunarnether:crater_small_placed"
+      "lunarnether:crater_small_placed",
+      "lunarnether:crater_big_placed"
     ],
     [
       "lunarnether:small_tuff_rock_placed",

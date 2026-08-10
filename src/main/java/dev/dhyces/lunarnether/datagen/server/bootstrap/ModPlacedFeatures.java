@@ -36,6 +36,7 @@ public class ModPlacedFeatures {
 
     public static final ResourceKey<PlacedFeature> AIR_DISK_PLACED = registerKey("air_disk_placed");
     public static final ResourceKey<PlacedFeature> CRATER_SMALL_PLACED = registerKey("crater_small_placed");
+    public static final ResourceKey<PlacedFeature> BIG_CRATER_PLACED = registerKey("crater_big_placed");
     public static final ResourceKey<PlacedFeature> SMALL_TUFF_ROCK_PLACED = registerKey("small_tuff_rock_placed");
     public static final ResourceKey<PlacedFeature> SMALL_MOONSTONE_ROCK_PLACED = registerKey("small_moonstone_rock_placed");
     public static final ResourceKey<PlacedFeature> SMALL_ORE_ROCK_PLACED = registerKey("small_ore_rock_placed");
@@ -131,6 +132,19 @@ public class ModPlacedFeatures {
                 CountPlacement.of(8),
                 InSquarePlacement.spread(),
                 HeightRangePlacement.of(UniformHeight.of(VerticalAnchor.absolute(128), VerticalAnchor.absolute(132)))
+            )
+        );
+
+        register(
+            context,
+            BIG_CRATER_PLACED,
+            configuredFeatures.getOrThrow(ModConfiguredFeatures.CRATER_BIG),
+            List.of(
+                RarityFilter.onAverageOnceEvery(20),
+                InSquarePlacement.spread(),
+                HeightmapPlacement.onHeightmap(Heightmap.Types.MOTION_BLOCKING),
+                BiomeFilter.biome(),
+                RandomOffsetPlacement.vertical(ConstantInt.of(-6))
             )
         );
 
