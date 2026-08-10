@@ -16,7 +16,6 @@ import net.minecraft.world.level.biome.BiomeGenerationSettings;
 import net.minecraft.world.level.biome.MobSpawnSettings;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
-
 import net.neoforged.neoforge.common.world.BiomeSpecialEffectsBuilder;
 
 import dev.dhyces.lunarnether.LunarNether;
@@ -88,9 +87,6 @@ public class ModBiomes {
                         ).addFeature(
                             GenerationStep.Decoration.UNDERGROUND_ORES,
                             placedFeatures.getOrThrow(ModPlacedFeatures.ORE_ILMENITE_PLACED)
-                        ).addFeature(
-                            GenerationStep.Decoration.UNDERGROUND_ORES,
-                            placedFeatures.getOrThrow(ModPlacedFeatures.ORE_NETHER_OBSIDIAN_PLACED)
                         ).addFeature(
                             GenerationStep.Decoration.UNDERGROUND_ORES,
                             placedFeatures.getOrThrow(ModPlacedFeatures.ORE_NETHER_TUFF_PLACED)

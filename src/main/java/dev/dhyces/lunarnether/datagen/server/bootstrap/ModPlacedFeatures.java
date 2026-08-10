@@ -41,8 +41,6 @@ public class ModPlacedFeatures {
     public static final ResourceKey<PlacedFeature> SMALL_ORE_ROCK_PLACED = registerKey("small_ore_rock_placed");
     public static final ResourceKey<PlacedFeature> ORE_ILMENITE_PLACED = registerKey("ore_ilmenite_placed");
     public static final ResourceKey<PlacedFeature> ORE_NETHER_TUFF_PLACED = registerKey("ore_nether_tuff_placed");
-    public static final ResourceKey<PlacedFeature> ORE_NETHER_OBSIDIAN_PLACED = registerKey("ore_nether_obsidian_placed");
-
 
     public static void bootstrap(BootstrapContext<PlacedFeature> context) {
         HolderGetter<ConfiguredFeature<?, ?>> configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
@@ -103,7 +101,7 @@ public class ModPlacedFeatures {
         register(
             context,
             SMALL_ORE_ROCK_PLACED,
-            configuredFeatures.getOrThrow(ModConfiguredFeatures.SMALL_MOONSTONE_ROCK),
+            configuredFeatures.getOrThrow(ModConfiguredFeatures.SMALL_ORE_ROCK),
             List.of(
                 RarityFilter.onAverageOnceEvery(24),
                 InSquarePlacement.spread(),
@@ -117,22 +115,10 @@ public class ModPlacedFeatures {
             ORE_ILMENITE_PLACED,
             configuredFeatures.getOrThrow(ModConfiguredFeatures.ORE_ILMENITE),
             List.of(
-                CountPlacement.of(40),
+                CountPlacement.of(35),
                 InSquarePlacement.spread(),
-                HeightRangePlacement.of(TrapezoidHeight.of(VerticalAnchor.absolute(127), VerticalAnchor.absolute(176))),
+                HeightRangePlacement.of(TrapezoidHeight.of(VerticalAnchor.absolute(130), VerticalAnchor.absolute(176))),
                 BiomeFilter.biome()
-            )
-        );
-
-        register(
-            context,
-            ORE_NETHER_OBSIDIAN_PLACED,
-            configuredFeatures.getOrThrow(ModConfiguredFeatures.ORE_NETHER_OBSIDIAN),
-            List.of(
-                RarityFilter.onAverageOnceEvery(2),
-                CountPlacement.of(8),
-                InSquarePlacement.spread(),
-                HeightRangePlacement.of(UniformHeight.of(VerticalAnchor.absolute(120), VerticalAnchor.absolute(124)))
             )
         );
 

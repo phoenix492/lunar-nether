@@ -110,7 +110,7 @@ public class ModTagProviders {
             tag(TagKey.create(BuiltInRegistries.BLOCK.key(), ResourceLocation.fromNamespaceAndPath("c", "ores")))
                 .addTag(TagKey.create(BuiltInRegistries.BLOCK.key(), ResourceLocation.fromNamespaceAndPath("c", "ores/titanium")));
 
-            tag(TagKey.create(BuiltInRegistries.BLOCK.key(), ResourceLocation.fromNamespaceAndPath(LunarNether.MODID, "moon_carver_replaceables")))
+            tag(ModTagKeys.Blocks.MOON_CARVER_REPLACEABLES)
                 .add(Blocks.TUFF)
                 .add(Blocks.OBSIDIAN)
                 .add(ModBlocks.LUNAR_STONE.get())

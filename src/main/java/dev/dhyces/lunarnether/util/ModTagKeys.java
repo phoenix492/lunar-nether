@@ -11,6 +11,7 @@ public class ModTagKeys {
     public static class Blocks {
 
         public static final TagKey<Block> OUTROCK_BLOB_REPLACEABLES = createTag(LunarNether.MODID, "outrock_blob_replaceables");
+        public static final TagKey<Block> MOON_CARVER_REPLACEABLES = createTag(LunarNether.MODID, "moon_carver_replaceables");
 
         private static TagKey<Block> createTag(String namespace, String name) {
             return TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(namespace, name));

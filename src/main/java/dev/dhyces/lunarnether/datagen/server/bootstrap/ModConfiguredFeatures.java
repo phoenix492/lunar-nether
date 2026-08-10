@@ -123,23 +123,11 @@ public class ModConfiguredFeatures {
 
         register(
             context,
-            ORE_NETHER_OBSIDIAN,
-            Feature.ORE,
-            new OreConfiguration(
-                new TagMatchTest(ModTagKeys.Blocks.OUTROCK_BLOB_REPLACEABLES),
-                ModBlocks.ILMENITE_ORE.get().defaultBlockState(),
-                24,
-                0f
-            )
-        );
-
-        register(
-            context,
             ORE_NETHER_TUFF,
             Feature.ORE,
             new OreConfiguration(
                 new TagMatchTest(ModTagKeys.Blocks.OUTROCK_BLOB_REPLACEABLES),
-                ModBlocks.ILMENITE_ORE.get().defaultBlockState(),
+                Blocks.TUFF.defaultBlockState(),
                 24,
                 0f
             )

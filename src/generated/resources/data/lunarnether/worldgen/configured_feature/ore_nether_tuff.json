@@ -6,7 +6,7 @@
     "targets": [
       {
         "state": {
-          "Name": "lunarnether:ilmenite_ore"
+          "Name": "minecraft:tuff"
         },
         "target": {
           "predicate_type": "minecraft:tag_match",
