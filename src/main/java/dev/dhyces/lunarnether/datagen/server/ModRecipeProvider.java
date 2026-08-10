@@ -158,6 +158,13 @@ public class ModRecipeProvider extends RecipeProvider {
             recipeOutput,
             RecipeCategory.BUILDING_BLOCKS,
             ModBlocks.CUT_TITANIUM_SLAB,
+            ModBlocks.TITANIUM_BLOCK,
+            2
+        );
+        stonecutterResultFromBaseForMod(
+            recipeOutput,
+            RecipeCategory.BUILDING_BLOCKS,
+            ModBlocks.CUT_TITANIUM_SLAB,
             ModBlocks.CUT_TITANIUM,
             2
         );
@@ -232,9 +239,17 @@ public class ModRecipeProvider extends RecipeProvider {
             recipeOutput,
             RecipeCategory.BUILDING_BLOCKS,
             ModBlocks.CUT_TITANIUM_STAIRS,
+            ModBlocks.TITANIUM_BLOCK,
+            1
+        );
+        stonecutterResultFromBaseForMod(
+            recipeOutput,
+            RecipeCategory.BUILDING_BLOCKS,
+            ModBlocks.CUT_TITANIUM_STAIRS,
             ModBlocks.CUT_TITANIUM,
             1
         );
+
 
         // Stonecutter Walls
         stonecutterResultFromBaseForMod(
@@ -277,6 +292,13 @@ public class ModRecipeProvider extends RecipeProvider {
             RecipeCategory.BUILDING_BLOCKS,
             ModBlocks.CUT_POLISHED_LUNAR_STONE_WALL,
             ModBlocks.CUT_POLISHED_LUNAR_STONE,
+            1
+        );
+        stonecutterResultFromBaseForMod(
+            recipeOutput,
+            RecipeCategory.BUILDING_BLOCKS,
+            ModBlocks.CUT_TITANIUM_WALL,
+            ModBlocks.TITANIUM_BLOCK,
             1
         );
         stonecutterResultFromBaseForMod(
