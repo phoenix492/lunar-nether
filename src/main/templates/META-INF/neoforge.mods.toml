@@ -93,7 +93,7 @@ reason="Trim materials for titanium ingot and ilmenite ore."
 # This version range declares a minimum of the current minecraft version up to but not including the next major version
 versionRange="[3.0.0,)"
 ordering="NONE"
-side="CLIENT"
+side="BOTH"
 
 [[dependencies.${mod_id}]]
 modId="stellarview"
@@ -103,6 +103,24 @@ reason="Provided support."
 versionRange="[0.5.2,)"
 ordering="NONE"
 side="CLIENT"
+
+[[dependencies.${mod_id}]]
+modId="patched"
+type="required"
+reason="Used to patch noise settings and surface rules of the Nether to allow world generation on the top layer."
+# This version range declares a minimum of the current minecraft version up to but not including the next major version
+versionRange="[9.0.0,)"
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.${mod_id}]]
+modId="lithostitched"
+type="required"
+reason="Used to inject biomes into the Nether."
+# This version range declares a minimum of the current minecraft version up to but not including the next major version
+versionRange="[1.7.13,)"
+ordering="NONE"
+side="BOTH"
 
 
 [modproperties.${mod_id}.patched]
