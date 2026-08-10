@@ -148,7 +148,7 @@ dependencies {
     implementation("maven.modrinth:IBlGrJtC:lsbqVn4T")
 
     // Stellar View
-    localRuntime("maven.modrinth:Iairjv0A:QD13LaRR")
+    //localRuntime("maven.modrinth:Iairjv0A:QD13LaRR")
 
     // Trimmed
     localRuntime("maven.modrinth:q8k4zHw5:wqxXFq0d")

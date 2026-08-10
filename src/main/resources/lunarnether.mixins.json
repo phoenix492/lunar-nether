@@ -5,7 +5,8 @@
   "refmap": "lunarnether.refmap.json",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
-    "DimensionTypeMixin"
+    "DimensionTypeMixin",
+    "LevelTimeAccessMixin"
   ],
   "injectors": {
     "defaultRequire": 1

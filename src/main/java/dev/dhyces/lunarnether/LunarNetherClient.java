@@ -1,5 +1,6 @@
 package dev.dhyces.lunarnether;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
@@ -27,7 +28,6 @@ public final class LunarNetherClient {
      * A separate time value for the nether which controls light and sky rendering.
      * Increases 8 times slower than the normal overworld daytime.
      */
-    public static long netherDayTime = 0;
     public static final int LENGTH_OF_LUNAR_DAY = 24000*8;
 
     public LunarNetherClient(ModContainer container) {
@@ -52,12 +52,12 @@ public final class LunarNetherClient {
     }
 
     public static double eclipse() {
-        double shiftedEclipse = LunarNetherClient.netherDayTime % LENGTH_OF_LUNAR_DAY - 12000;
+        double shiftedEclipse = Minecraft.getInstance().level.dayTime() % LENGTH_OF_LUNAR_DAY - 12000;
         return (20d / 1000000000) * (shiftedEclipse * shiftedEclipse);
     }
 
     public static float skyDarkness(double eclipseParabola) {
-        double decimal = Mth.frac(LunarNetherClient.netherDayTime / (float)LENGTH_OF_LUNAR_DAY - 0.25);
+        double decimal = Mth.frac(Minecraft.getInstance().level.dayTime() / (float)LENGTH_OF_LUNAR_DAY - 0.25);
         double d1 = 0.5 - Math.cos(decimal * Math.PI) / 2;
         return (float)(decimal * 2 + Math.min(d1, eclipseParabola)) / 3.0F;
     }

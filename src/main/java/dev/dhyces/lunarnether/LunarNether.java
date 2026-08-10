@@ -1,14 +1,10 @@
 package dev.dhyces.lunarnether;
 
-import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.level.Level;
+import net.minecraft.util.Mth;
 import net.neoforged.bus.api.IEventBus;
-import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;
-import net.neoforged.neoforge.event.level.LevelEvent;
-import net.neoforged.neoforge.event.tick.LevelTickEvent;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,10 +15,9 @@ import dev.dhyces.lunarnether.registry.ModFeatures;
 import dev.dhyces.lunarnether.registry.ModFluids;
 import dev.dhyces.lunarnether.registry.ModItems;
 import dev.dhyces.lunarnether.registry.ModParticleTypes;
-import dev.dhyces.lunarnether.server.saveddata.LunarTimeData;
 
 @Mod(LunarNether.MODID)
-@EventBusSubscriber
+
 public class LunarNether {
     public static final String MODID = "lunarnether";
     public static final Logger LOGGER = LoggerFactory.getLogger("LunarNether");
@@ -37,25 +32,14 @@ public class LunarNether {
         ModFeatures.MOD_FEATURES.register(modEventBus);
     }
 
-    @SubscribeEvent
-    private static void onLevelLoaded(LevelEvent.Load event) {
-        if (event.getLevel() instanceof ServerLevel level && level.dimension() == Level.NETHER) {
-            LunarTimeData.getOrCreate(level);
-            LunarTimeData.currentNether = level;
-        }
+    /**
+     * A separate time calculation for the nether which controls light and sky rendering.
+     * Increases 8 times slower than the normal overworld daytime.
+     */
+    public static float netherTimeOfDay(long daytime) {
+        double decimal = Mth.frac(daytime / (24000.0 * 8) - 0.25);
+        double d1 = 0.5 - Math.cos(decimal * Math.PI) / 2;
+        return (float)(decimal * 2 + d1) / 3.0F;
     }
 
-    @SubscribeEvent
-    private static void onLevelUnloaded(LevelEvent.Unload event) {
-        if (event.getLevel() instanceof ServerLevel level && level.dimension() == Level.NETHER) {
-            LunarTimeData.currentNether = null;
-        }
-    }
-
-    @SubscribeEvent
-    private static void onLevelTick(LevelTickEvent.Post event) {
-        if (event.getLevel() instanceof ServerLevel level && level.dimension() == Level.NETHER) {
-            LunarTimeData.getOrCreate(level).update(level.dayTime());
-        }
-    }
 }

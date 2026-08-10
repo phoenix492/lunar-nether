@@ -18,12 +18,9 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.phys.Vec3;
-
 import net.neoforged.fml.ModList;
 
 import dev.dhyces.lunarnether.LunarNether;
-import dev.dhyces.lunarnether.LunarNetherClient;
-import dev.dhyces.lunarnether.server.saveddata.LunarTimeData;
 import dev.dhyces.lunarnether.util.ColorUtil;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -108,7 +105,7 @@ public class LunarNetherDimensionEffects extends DimensionSpecialEffects {
         Matrix4f overworldGlowMatrix = new Matrix4f(modelViewMatrix).rotateY((float) Math.toRadians(90F));
 
         // rotate for time of day
-        float timeAngle = LunarTimeData.netherTimeOfDay(LunarNetherClient.netherDayTime) * 360.0F;
+        float timeAngle = LunarNether.netherTimeOfDay(level.dayTime()) * 360.0F;
         starMatrix.rotateX(-(float) Math.toRadians(timeAngle));
         sunMatrix.rotateX(-(float) Math.toRadians(timeAngle));
 
