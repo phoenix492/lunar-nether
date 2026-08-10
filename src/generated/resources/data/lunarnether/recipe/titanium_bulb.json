@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "B": {
+      "item": "minecraft:blaze_rod"
+    },
+    "R": {
+      "item": "minecraft:redstone"
+    },
+    "T": {
+      "item": "lunarnether:titanium_block"
+    }
+  },
+  "pattern": [
+    " T ",
+    "TBT",
+    " R "
+  ],
+  "result": {
+    "count": 4,
+    "id": "lunarnether:titanium_bulb"
+  }
+}

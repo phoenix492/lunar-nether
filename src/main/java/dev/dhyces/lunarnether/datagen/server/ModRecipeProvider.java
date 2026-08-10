@@ -161,6 +161,29 @@ public class ModRecipeProvider extends RecipeProvider {
             ModBlocks.CUT_TITANIUM,
             2
         );
+        stonecutterResultFromBaseForMod(
+            recipeOutput,
+            RecipeCategory.BUILDING_BLOCKS,
+            ModBlocks.TITANIUM_GRATE,
+            ModBlocks.TITANIUM_BLOCK,
+            1
+        );
+        stonecutterResultFromBaseForMod(
+            recipeOutput,
+            RecipeCategory.BUILDING_BLOCKS,
+            ModBlocks.CHISELED_TITANIUM,
+            ModBlocks.TITANIUM_BLOCK,
+            1
+        );
+        stonecutterResultFromBaseForMod(
+            recipeOutput,
+            RecipeCategory.BUILDING_BLOCKS,
+            ModBlocks.CHISELED_TITANIUM,
+            ModBlocks.CUT_TITANIUM,
+            1
+        );
+
+
 
         // Stonecutter Stairs
         stonecutterResultFromBaseForMod(
@@ -263,6 +286,41 @@ public class ModRecipeProvider extends RecipeProvider {
             ModBlocks.CUT_TITANIUM,
             1
         );
+
+        // New Titanium Variants
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModItems.TITANIUM_BULB.asItem(), 4)
+            .pattern(" T ")
+            .pattern("TBT")
+            .pattern(" R ")
+            .define('T', ModItems.TITANIUM_BLOCK)
+            .define('B', Items.BLAZE_ROD)
+            .define('R', Items.REDSTONE)
+            .unlockedBy("has_titanium_ingot", has(ModItems.TITANIUM_INGOT))
+            .unlockedBy("has_blaze_rod", has(Items.BLAZE_ROD))
+            .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModItems.TITANIUM_DOOR.asItem(), 3)
+            .pattern("TT")
+            .pattern("TT")
+            .pattern("TT")
+            .define('T', ModItems.TITANIUM_BLOCK)
+            .unlockedBy("has_titanium_ingot", has(ModItems.TITANIUM_INGOT))
+            .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModItems.TITANIUM_GRATE.asItem(), 4)
+            .pattern(" T ")
+            .pattern("T T")
+            .pattern(" T ")
+            .define('T', ModItems.TITANIUM_BLOCK)
+            .unlockedBy("has_titanium_ingot", has(ModItems.TITANIUM_INGOT))
+            .save(recipeOutput);
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModItems.CHISELED_TITANIUM.asItem(), 1)
+            .pattern("S")
+            .pattern("S")
+            .define('S', ModItems.CUT_TITANIUM_SLAB)
+            .unlockedBy("has_titanium_ingot", has(ModItems.TITANIUM_INGOT))
+            .save(recipeOutput);
+
     }
 
     protected static void stonecutterResultFromBaseForMod(RecipeOutput recipeOutput, RecipeCategory category, ItemLike result, ItemLike material, int resultCount) {

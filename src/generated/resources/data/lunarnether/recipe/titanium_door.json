@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "T": {
+      "item": "lunarnether:titanium_block"
+    }
+  },
+  "pattern": [
+    "TT",
+    "TT",
+    "TT"
+  ],
+  "result": {
+    "count": 3,
+    "id": "lunarnether:titanium_door"
+  }
+}
