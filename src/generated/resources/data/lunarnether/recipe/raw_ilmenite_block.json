@@ -1,0 +1,37 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "lunarnether:raw_ilmenite"
+    },
+    {
+      "item": "lunarnether:raw_ilmenite"
+    },
+    {
+      "item": "lunarnether:raw_ilmenite"
+    },
+    {
+      "item": "lunarnether:raw_ilmenite"
+    },
+    {
+      "item": "lunarnether:raw_ilmenite"
+    },
+    {
+      "item": "lunarnether:raw_ilmenite"
+    },
+    {
+      "item": "lunarnether:raw_ilmenite"
+    },
+    {
+      "item": "lunarnether:raw_ilmenite"
+    },
+    {
+      "item": "lunarnether:raw_ilmenite"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "lunarnether:raw_ilmenite_block"
+  }
+}

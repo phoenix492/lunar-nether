@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_polished_lunar_stone": {
+      "conditions": {
+        "items": [
+          {
+            "items": "lunarnether:polished_lunar_stone"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "lunarnether:stonecutting/polished_lunar_stone_slab_from_polished_lunar_stone"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_polished_lunar_stone"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "lunarnether:stonecutting/polished_lunar_stone_slab_from_polished_lunar_stone"
+    ]
+  }
+}

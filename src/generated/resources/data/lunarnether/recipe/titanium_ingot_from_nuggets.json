@@ -1,0 +1,37 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "lunarnether:titanium_nugget"
+    },
+    {
+      "item": "lunarnether:titanium_nugget"
+    },
+    {
+      "item": "lunarnether:titanium_nugget"
+    },
+    {
+      "item": "lunarnether:titanium_nugget"
+    },
+    {
+      "item": "lunarnether:titanium_nugget"
+    },
+    {
+      "item": "lunarnether:titanium_nugget"
+    },
+    {
+      "item": "lunarnether:titanium_nugget"
+    },
+    {
+      "item": "lunarnether:titanium_nugget"
+    },
+    {
+      "item": "lunarnether:titanium_nugget"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "lunarnether:titanium_ingot"
+  }
+}

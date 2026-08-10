@@ -22,6 +22,7 @@ import dev.dhyces.lunarnether.datagen.client.ModParticleDescriptionProvider;
 import dev.dhyces.lunarnether.datagen.server.ModAdvancementProvider;
 import dev.dhyces.lunarnether.datagen.server.ModBlockLootSubProvider;
 import dev.dhyces.lunarnether.datagen.server.ModDatapackProvider;
+import dev.dhyces.lunarnether.datagen.server.ModRecipeProvider;
 import dev.dhyces.lunarnether.datagen.server.ModTagProviders;
 
 @EventBusSubscriber(modid = LunarNether.MODID)
@@ -41,11 +42,14 @@ public class DataGenerators {
         generator.addProvider(event.includeClient(), new ModParticleDescriptionProvider(packOutput, existingFileHelper));
 
         // Server/Datapack Providers
+        // Reassign the lookupProvider to the one returned by .getRegistryProvider() here,
+        // since we need to use the things we generate in it elsewhere.
+        lookupProvider = generator.addProvider(event.includeServer(), new ModDatapackProvider(packOutput, lookupProvider)).getRegistryProvider();
         ModTagProviders.ModBlockTagProvider blockTagsProvider = generator.addProvider(event.includeServer(), new ModTagProviders.ModBlockTagProvider(packOutput, lookupProvider, existingFileHelper));
         generator.addProvider(event.includeServer(), new ModTagProviders.ModBiomeTagProvider(packOutput, lookupProvider, existingFileHelper));
         generator.addProvider(event.includeServer(), new ModTagProviders.ModItemTagProvider(packOutput, lookupProvider, blockTagsProvider.contentsGetter(), existingFileHelper));
-        //generator.addProvider(event.includeServer(), new ModAdvancementProvider(packOutput, lookupProvider, existingFileHelper));
-        generator.addProvider(event.includeServer(), new ModDatapackProvider(packOutput, lookupProvider));
+        generator.addProvider(event.includeServer(), new ModAdvancementProvider(packOutput, lookupProvider, existingFileHelper));
+        generator.addProvider(event.includeServer(), new ModRecipeProvider(packOutput, lookupProvider));
         generator.addProvider(event.includeServer(), new LootTableProvider(
             packOutput,
             Set.of(),
@@ -60,7 +64,6 @@ public class DataGenerators {
       /*
         generator.addProvider(event.includeServer(), new ModEntityTypeTagsProvider(packOutput, lookupProvider, existingFileHelper));
         generator.addProvider(event.includeServer(), new ModDataMapProvider(packOutput, lookupProvider));
-        generator.addProvider(event.includeServer(), new ModRecipeProvider(packOutput, lookupProvider));
        */
     }
 }

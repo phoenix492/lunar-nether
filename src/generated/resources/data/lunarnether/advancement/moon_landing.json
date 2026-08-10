@@ -1,0 +1,42 @@
+{
+  "parent": "minecraft:nether/root",
+  "criteria": {
+    "onLunarNether": {
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "biomes": "lunarnether:outrocks",
+                "can_see_sky": true,
+                "dimension": "minecraft:the_nether"
+              }
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:location"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.lunarnnether.moonlanding.description"
+    },
+    "hidden": true,
+    "icon": {
+      "count": 1,
+      "id": "lunarnether:astralith"
+    },
+    "title": {
+      "translate": "advancements.lunarnnether.moonlanding.title"
+    }
+  },
+  "requirements": [
+    [
+      "onLunarNether"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

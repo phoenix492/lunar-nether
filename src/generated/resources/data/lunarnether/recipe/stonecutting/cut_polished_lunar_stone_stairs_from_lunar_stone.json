@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "lunarnether:lunar_stone"
+  },
+  "result": {
+    "count": 1,
+    "id": "lunarnether:cut_polished_lunar_stone_stairs"
+  }
+}

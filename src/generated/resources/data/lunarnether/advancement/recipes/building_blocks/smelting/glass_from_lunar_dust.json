@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_lunar_dust": {
+      "conditions": {
+        "items": [
+          {
+            "items": "lunarnether:lunar_dust"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "lunarnether:smelting/glass_from_lunar_dust"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_lunar_dust"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "lunarnether:smelting/glass_from_lunar_dust"
+    ]
+  }
+}

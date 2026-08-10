@@ -6,14 +6,12 @@ import net.minecraft.advancements.AdvancementType;
 import net.minecraft.advancements.critereon.DistancePredicate;
 import net.minecraft.advancements.critereon.DistanceTrigger;
 import net.minecraft.advancements.critereon.EntityPredicate;
-import net.minecraft.advancements.critereon.EntityTypePredicate;
 import net.minecraft.advancements.critereon.LocationPredicate;
 import net.minecraft.advancements.critereon.MinMaxBounds;
 import net.minecraft.advancements.critereon.MobEffectsPredicate;
-import net.minecraft.advancements.critereon.PlayerPredicate;
 import net.minecraft.advancements.critereon.PlayerTrigger;
+import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.advancements.AdvancementSubProvider;
@@ -22,16 +20,17 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.level.biome.Biome;
 import net.neoforged.neoforge.common.data.AdvancementProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
+import net.neoforged.neoforge.registries.DeferredHolder;
 
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Consumer;
 
-import com.google.common.primitives.Doubles;
-
 import dev.dhyces.lunarnether.LunarNether;
+import dev.dhyces.lunarnether.datagen.server.bootstrap.ModBiomes;
 import dev.dhyces.lunarnether.registry.ModItems;
 
 public class ModAdvancementProvider extends AdvancementProvider {
@@ -57,12 +56,7 @@ public class ModAdvancementProvider extends AdvancementProvider {
                     "onLunarNether",
                     PlayerTrigger.TriggerInstance.located(
                         LocationPredicate.Builder.inBiome(
-                            provider.lookupOrThrow(Registries.BIOME).getOrThrow(
-                                ResourceKey.create(
-                                    Registries.BIOME,
-                                    ResourceLocation.fromNamespaceAndPath(LunarNether.MODID, "outrocks")
-                                )
-                            )
+                            provider.asGetterLookup().lookupOrThrow(Registries.BIOME).getOrThrow(ModBiomes.OUTROCKS)
                         ).setCanSeeSky(true)
                         .setDimension(
                             ResourceKey.create(
@@ -99,12 +93,7 @@ public class ModAdvancementProvider extends AdvancementProvider {
                                 )
                         ).located(
                             LocationPredicate.Builder.inBiome(
-                                provider.lookupOrThrow(Registries.BIOME).getOrThrow(
-                                    ResourceKey.create(
-                                        Registries.BIOME,
-                                        ResourceLocation.fromNamespaceAndPath(LunarNether.MODID, "outrocks")
-                                    )
-                                )
+                                provider.asGetterLookup().lookupOrThrow(Registries.BIOME).getOrThrow(ModBiomes.OUTROCKS)
                             )
                         ),
                         DistancePredicate.vertical(MinMaxBounds.Doubles.atLeast(1)),

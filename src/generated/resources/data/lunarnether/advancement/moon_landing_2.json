@@ -1,0 +1,49 @@
+{
+  "parent": "lunarnether:moon_landing",
+  "criteria": {
+    "bigJumpOutrocks": {
+      "conditions": {
+        "distance": {
+          "y": {
+            "min": 1.0
+          }
+        },
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "effects": {
+                "minecraft:jump_boost": {}
+              },
+              "location": {
+                "biomes": "lunarnether:outrocks"
+              }
+            }
+          }
+        ],
+        "start_position": {}
+      },
+      "trigger": "minecraft:fall_from_height"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.lunarnnether.moonlanding2.description"
+    },
+    "hidden": true,
+    "icon": {
+      "count": 1,
+      "id": "minecraft:rabbit_foot"
+    },
+    "title": {
+      "translate": "advancements.lunarnnether.moonlanding2.title"
+    }
+  },
+  "requirements": [
+    [
+      "bigJumpOutrocks"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

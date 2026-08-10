@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "L": {
+      "item": "lunarnether:lunar_stone"
+    },
+    "R": {
+      "item": "minecraft:redstone"
+    },
+    "T": {
+      "item": "lunarnether:titanium_ingot"
+    }
+  },
+  "pattern": [
+    " TR",
+    "TLT",
+    " T "
+  ],
+  "result": {
+    "count": 1,
+    "id": "lunarnether:lunar_clock"
+  }
+}
