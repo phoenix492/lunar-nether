@@ -48,6 +48,11 @@ public class ModBlockLootSubProvider extends BlockLootSubProvider {
         dropSelf(ModBlocks.CUT_TITANIUM_STAIRS.get());
         dropSelf(ModBlocks.CUT_TITANIUM_SLAB.get());
         dropSelf(ModBlocks.CUT_TITANIUM_WALL.get());
+        dropSelf(ModBlocks.TITANIUM_BULB.get());
+        dropSelf(ModBlocks.TITANIUM_GRATE.get());
+        dropSelf(ModBlocks.TITANIUM_TRAPDOOR.get());
+        dropSelf(ModBlocks.CHISELED_TITANIUM.get());
+        add(ModBlocks.TITANIUM_DOOR.get(), createDoorTable(ModBlocks.TITANIUM_DOOR.get()));
 
         dropSelf(ModBlocks.RAW_ILMENITE_BLOCK.get());
         dropSelf(ModBlocks.LUNAR_DUST.get());

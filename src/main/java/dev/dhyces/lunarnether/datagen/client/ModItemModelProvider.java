@@ -41,6 +41,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         simpleBlockItem(ModBlocks.CUT_TITANIUM_STAIRS.get());
         wallItem(ModBlocks.CUT_TITANIUM_WALL, ModBlocks.CUT_TITANIUM);
 
+        basicItem(ModBlocks.TITANIUM_DOOR.asItem());
 
         basicItem(ModItems.RAW_ILMENITE.asItem());
         basicItem(ModItems.TITANIUM_INGOT.asItem());
@@ -63,7 +64,6 @@ public class ModItemModelProvider extends ItemModelProvider {
             .override().model(new ModelFile.UncheckedModelFile("lunarnether:item/moon_clock_3")).predicate(ResourceLocation.fromNamespaceAndPath(LunarNether.MODID, "moon_phase"), 0.625f).end()
             .override().model(new ModelFile.UncheckedModelFile("lunarnether:item/moon_clock_2")).predicate(ResourceLocation.fromNamespaceAndPath(LunarNether.MODID, "moon_phase"), 0.75f).end()
             .override().model(new ModelFile.UncheckedModelFile("lunarnether:item/moon_clock_1")).predicate(ResourceLocation.fromNamespaceAndPath(LunarNether.MODID, "moon_phase"), 0.875f).end();
-
     }
 
     public void wallItem(DeferredBlock<?> block, DeferredBlock<Block> baseBlock) {

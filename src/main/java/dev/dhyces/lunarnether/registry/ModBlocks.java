@@ -3,7 +3,6 @@ package dev.dhyces.lunarnether.registry;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.CopperBulbBlock;
 import net.minecraft.world.level.block.DoorBlock;
 import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.SoundType;
@@ -237,23 +236,25 @@ public class ModBlocks {
         )
     );
 
-    public static final DeferredBlock<Block> TITANIUM_DOOR = MOD_BLOCKS.register(
+    public static final DeferredBlock<DoorBlock> TITANIUM_DOOR = MOD_BLOCKS.register(
         "titanium_door",
         () -> new DoorBlock(
             TITANIUM,
             BlockBehaviour.Properties.ofFullCopy(Blocks.NETHERITE_BLOCK)
                 .strength(3.0F, 16.0F)
                 .mapColor(MapColor.METAL)
+                .noOcclusion()
         )
     );
 
-    public static final DeferredBlock<Block> TITANIUM_TRAPDOOR = MOD_BLOCKS.register(
+    public static final DeferredBlock<TrapDoorBlock> TITANIUM_TRAPDOOR = MOD_BLOCKS.register(
         "titanium_trapdoor",
         () -> new TrapDoorBlock(
             TITANIUM,
             BlockBehaviour.Properties.ofFullCopy(Blocks.NETHERITE_BLOCK)
                 .strength(3.0F, 16.0F)
                 .mapColor(MapColor.METAL)
+                .noOcclusion()
         )
     );
 

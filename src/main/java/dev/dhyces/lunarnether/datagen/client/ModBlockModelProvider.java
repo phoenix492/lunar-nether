@@ -17,5 +17,7 @@ public class ModBlockModelProvider extends BlockModelProvider {
         cubeAll("astralith_2", modLoc("block/astralith_2"));
         cubeAll("astralith_3", modLoc("block/astralith_3"));
         cubeAll("astralith_4", modLoc("block/astralith_4"));
+
+        cubeAll("titanium_grate", modLoc("block/titanium_grate")).renderType("cutout");
     }
 }

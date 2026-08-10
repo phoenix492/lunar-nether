@@ -19,6 +19,11 @@
   "block.lunarnether.cut_titanium_slab": "Cut Titanium Slab",
   "block.lunarnether.cut_titanium_stairs": "Cut Titanium Stairs",
   "block.lunarnether.cut_titanium_wall": "Cut Titanium Wall",
+  "block.lunarnether.titanium_door": "Titanium Door",
+  "block.lunarnether.titanium_trapdoor": "Titanium Trapdoor",
+  "block.lunarnether.chiseled_titanium": "Chiseled Titanium",
+  "block.lunarnether.titanium_grate": "Titanium Grate",
+  "block.lunarnether.titanium_bulb": "Titanium Bulb",
   "block.lunarnether.astralith": "Astralith",
 
   "item.lunarnether.raw_ilmenite": "Ilmenite", 

@@ -41,9 +41,9 @@ public class ModItems {
 
     public static final DeferredItem<Item> CUT_TITANIUM_WALL = registerBlockItem("cut_titanium_wall", ModBlocks.CUT_TITANIUM_WALL::get);
 
+    public static final DeferredItem<Item> TITANIUM_DOOR = registerBlockItem("titanium_door", ModBlocks.TITANIUM_DOOR::get);
+    public static final DeferredItem<Item> TITANIUM_TRAPDOOR = registerBlockItem("titanium_trapdoor", ModBlocks.TITANIUM_TRAPDOOR::get);
     public static final DeferredItem<Item> CHISELED_TITANIUM = registerBlockItem("chiseled_titanium", ModBlocks.CHISELED_TITANIUM);
-    public static final DeferredItem<Item> TITANIUM_DOOR = registerBlockItem("titanium_door", ModBlocks.TITANIUM_DOOR);
-    public static final DeferredItem<Item> TITANIUM_TRAPDOOR = registerBlockItem("titanium_trapdoor", ModBlocks.TITANIUM_TRAPDOOR);
     public static final DeferredItem<Item> TITANIUM_GRATE = registerBlockItem("titanium_grate", ModBlocks.TITANIUM_GRATE);
     public static final DeferredItem<Item> TITANIUM_BULB = registerBlockItem("titanium_bulb", ModBlocks.TITANIUM_BULB);
 
