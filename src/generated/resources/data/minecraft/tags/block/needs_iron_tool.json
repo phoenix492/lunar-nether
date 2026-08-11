@@ -3,6 +3,11 @@
     "lunarnether:cut_titanium",
     "lunarnether:cut_titanium_wall",
     "lunarnether:cut_titanium_slab",
-    "lunarnether:cut_titanium_stairs"
+    "lunarnether:cut_titanium_stairs",
+    "lunarnether:titanium_bulb",
+    "lunarnether:titanium_door",
+    "lunarnether:titanium_trapdoor",
+    "lunarnether:chiseled_titanium",
+    "lunarnether:titanium_grate"
   ]
 }

@@ -55,6 +55,11 @@ public class ModTagProviders {
                 .add(ModBlocks.CUT_TITANIUM_STAIRS.get())
                 .add(ModBlocks.CUT_TITANIUM_SLAB.get())
                 .add(ModBlocks.CUT_TITANIUM_WALL.get())
+                .add(ModBlocks.TITANIUM_BULB.get())
+                .add(ModBlocks.TITANIUM_DOOR.get())
+                .add(ModBlocks.TITANIUM_TRAPDOOR.get())
+                .add(ModBlocks.TITANIUM_GRATE.get())
+                .add(ModBlocks.CHISELED_TITANIUM.get())
                 .add(ModBlocks.ASTRALITH.get());
 
             tag(BlockTags.MINEABLE_WITH_SHOVEL)
@@ -67,7 +72,12 @@ public class ModTagProviders {
                 .add(ModBlocks.CUT_TITANIUM.get())
                 .add(ModBlocks.CUT_TITANIUM_WALL.get())
                 .add(ModBlocks.CUT_TITANIUM_SLAB.get())
-                .add(ModBlocks.CUT_TITANIUM_STAIRS.get());
+                .add(ModBlocks.CUT_TITANIUM_STAIRS.get())
+                .add(ModBlocks.TITANIUM_BULB.get())
+                .add(ModBlocks.TITANIUM_DOOR.get())
+                .add(ModBlocks.TITANIUM_TRAPDOOR.get())
+                .add(ModBlocks.CHISELED_TITANIUM.get())
+                .add(ModBlocks.TITANIUM_GRATE.get());
 
             tag(BlockTags.NEEDS_STONE_TOOL)
                 .add(ModBlocks.ILMENITE_ORE.get())
