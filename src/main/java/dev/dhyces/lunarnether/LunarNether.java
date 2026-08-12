@@ -5,6 +5,7 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.config.ModConfig;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,6 +31,7 @@ public class LunarNether {
         ModCreativeModTabs.MOD_CREATIVE_TABS.register(modEventBus);
         ModParticleTypes.MOD_PARTICLE_TYPES.register(modEventBus);
         ModFeatures.MOD_FEATURES.register(modEventBus);
+        modContainer.registerConfig(ModConfig.Type.SERVER, LunarNetherConfig.SPEC);
     }
 
     /**

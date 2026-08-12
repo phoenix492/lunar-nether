@@ -218,6 +218,12 @@ public class ModTagProviders {
         protected void addTags(HolderLookup.@NotNull Provider provider) {
             tag(BiomeTags.IS_NETHER)
                 .addOptional(ResourceLocation.fromNamespaceAndPath(LunarNether.MODID, "outrocks"));
+
+            tag(ModTagKeys.Biomes.IS_LUNAR)
+                .addOptional(ResourceLocation.fromNamespaceAndPath(LunarNether.MODID, "outrocks"));
+
+            tag(ModTagKeys.Biomes.LOWERED_GRAVITY)
+                .addOptional(ResourceLocation.fromNamespaceAndPath(LunarNether.MODID, "outrocks"));
         }
     }
 }
