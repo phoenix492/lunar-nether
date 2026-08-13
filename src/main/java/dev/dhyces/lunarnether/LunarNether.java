@@ -3,19 +3,20 @@ package dev.dhyces.lunarnether;
 import net.minecraft.util.Mth;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
-import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import dev.dhyces.lunarnether.config.LunarNetherServerConfig;
 import dev.dhyces.lunarnether.registry.ModBlocks;
 import dev.dhyces.lunarnether.registry.ModCreativeModTabs;
 import dev.dhyces.lunarnether.registry.ModFeatures;
 import dev.dhyces.lunarnether.registry.ModFluids;
 import dev.dhyces.lunarnether.registry.ModItems;
 import dev.dhyces.lunarnether.registry.ModParticleTypes;
+import dev.dhyces.lunarnether.util.CompatData;
 
 @Mod(LunarNether.MODID)
 
@@ -31,7 +32,8 @@ public class LunarNether {
         ModCreativeModTabs.MOD_CREATIVE_TABS.register(modEventBus);
         ModParticleTypes.MOD_PARTICLE_TYPES.register(modEventBus);
         ModFeatures.MOD_FEATURES.register(modEventBus);
-        modContainer.registerConfig(ModConfig.Type.SERVER, LunarNetherConfig.SPEC);
+        modContainer.registerConfig(ModConfig.Type.SERVER, LunarNetherServerConfig.SPEC);
+        CompatData.init();
     }
 
     /**

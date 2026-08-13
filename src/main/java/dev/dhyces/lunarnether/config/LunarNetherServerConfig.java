@@ -1,11 +1,11 @@
-package dev.dhyces.lunarnether;
+package dev.dhyces.lunarnether.config;
 
 import net.neoforged.neoforge.common.ModConfigSpec;
 
 import org.apache.commons.lang3.tuple.Pair;
 
-public class LunarNetherConfig {
-    public static final LunarNetherConfig SERVER_CONFIG;
+public class LunarNetherServerConfig {
+    public static final LunarNetherServerConfig SERVER_CONFIG;
     public static final ModConfigSpec SPEC;
 
     public enum FallDamageReductionMethod {
@@ -19,12 +19,12 @@ public class LunarNetherConfig {
     public final ModConfigSpec.EnumValue<FallDamageReductionMethod> fallDamageReductionMethod;
 
     static {
-        Pair<LunarNetherConfig, ModConfigSpec> pair = new ModConfigSpec.Builder().configure(LunarNetherConfig::new);
+        Pair<LunarNetherServerConfig, ModConfigSpec> pair = new ModConfigSpec.Builder().configure(LunarNetherServerConfig::new);
         SERVER_CONFIG = pair.getLeft();
         SPEC = pair.getRight();
     }
 
-    private LunarNetherConfig(ModConfigSpec.Builder BUILDER) {
+    private LunarNetherServerConfig(ModConfigSpec.Builder BUILDER) {
         applyModifiedGravity = BUILDER
             .comment("Whether to apply a multiplier to gravity in biomes tagged #lunarnether:lowered_gravity")
             .define("applyModifiedGravity", true);

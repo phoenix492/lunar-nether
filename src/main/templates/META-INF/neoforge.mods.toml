@@ -81,7 +81,6 @@ side="BOTH"
 [[dependencies.${mod_id}]]
 modId="minecraft"
 type="required"
-# This version range declares a minimum of the current minecraft version up to but not including the next major version
 versionRange="${minecraft_version_range}"
 ordering="NONE"
 side="BOTH"
@@ -90,7 +89,6 @@ side="BOTH"
 modId="trimmed"
 type="optional"
 reason="Trim materials for titanium ingot and ilmenite ore."
-# This version range declares a minimum of the current minecraft version up to but not including the next major version
 versionRange="[3.0.0,)"
 ordering="NONE"
 side="BOTH"
@@ -99,7 +97,6 @@ side="BOTH"
 modId="stellarview"
 type="optional"
 reason="Provided support."
-# This version range declares a minimum of the current minecraft version up to but not including the next major version
 versionRange="[0.5.2,)"
 ordering="NONE"
 side="CLIENT"
@@ -108,7 +105,6 @@ side="CLIENT"
 modId="patched"
 type="required"
 reason="Used to patch noise settings and surface rules of the Nether to allow world generation on the top layer."
-# This version range declares a minimum of the current minecraft version up to but not including the next major version
 versionRange="[9.0.0,)"
 ordering="NONE"
 side="BOTH"
@@ -117,8 +113,39 @@ side="BOTH"
 modId="lithostitched"
 type="required"
 reason="Used to inject biomes into the Nether."
-# This version range declares a minimum of the current minecraft version up to but not including the next major version
 versionRange="[1.7.13,)"
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.${mod_id}]]
+modId="incendium"
+type="optional"
+reason="Additional compat data is provided for Incendium."
+versionRange="[5.4.4,)"
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.${mod_id}]]
+modId="big_globe"
+type="discouraged"
+reason="No compat data is provided for Big Globe. Generation WILL be broken."
+versionRange=""
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.${mod_id}]]
+modId="jjthunder-hell-is-fire"
+type="discouraged"
+reason="No compat data is provided for JJThunder's Hell is Fire. Generation WILL be broken."
+versionRange=""
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.${mod_id}]]
+modId="lavaflow"
+type="discouraged"
+reason="No compat data is provided for Lavaflow. Generation WILL be broken."
+versionRange=""
 ordering="NONE"
 side="BOTH"
 

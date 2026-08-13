@@ -21,7 +21,9 @@ import net.minecraft.world.phys.Vec3;
 import net.neoforged.fml.ModList;
 
 import dev.dhyces.lunarnether.LunarNether;
+import dev.dhyces.lunarnether.config.LunarNetherServerConfig;
 import dev.dhyces.lunarnether.util.ColorUtil;
+import dev.dhyces.lunarnether.util.CompatData;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.joml.Matrix4f;
@@ -37,13 +39,9 @@ public class LunarNetherDimensionEffects extends DimensionSpecialEffects {
     private static final float OVERWORLD_SIZE = 30f;
     private static final float SUN_SIZE = 30f;
     private static final int SKYBOX_DISTANCE = 2000;
-    private static final int SKYBOX_START_Y = 128;
-
 
     private static VertexBuffer skyBuffer;
     private static VertexBuffer starsBuffer;
-
-    private static boolean STELLAR_VIEW_LOADED;
 
     static {
         setup();
@@ -67,7 +65,6 @@ public class LunarNetherDimensionEffects extends DimensionSpecialEffects {
         starsBuffer.upload(drawStars(tesselator));
         VertexBuffer.unbind();
 
-        STELLAR_VIEW_LOADED = ModList.get().isLoaded("stellarview");
     }
 
     @Override
@@ -77,7 +74,7 @@ public class LunarNetherDimensionEffects extends DimensionSpecialEffects {
 
     @Override
     public boolean isFoggyAt(int pX, int pY) {
-        return pY < SKYBOX_START_Y;
+        return pY < CompatData.getSkyboxStartHeight();
     }
 
     @Override
@@ -88,7 +85,7 @@ public class LunarNetherDimensionEffects extends DimensionSpecialEffects {
 
     @Override
     public boolean renderSky(ClientLevel level, int ticks, float partialTick, Matrix4f modelViewMatrix, Camera camera, Matrix4f projectionMatrix, boolean isFoggy, Runnable setupFog) {
-        if (STELLAR_VIEW_LOADED || camera.getPosition().y < SKYBOX_START_Y) {
+        if (CompatData.STELLAR_VIEW_LOADED || camera.getPosition().y < CompatData.getSkyboxStartHeight()) {
             return false;
         } else {
             renderLunarNetherSkybox(level, modelViewMatrix, projectionMatrix);
@@ -98,16 +95,22 @@ public class LunarNetherDimensionEffects extends DimensionSpecialEffects {
 
     private void renderLunarNetherSkybox(ClientLevel level, Matrix4f modelViewMatrix, Matrix4f projectionMatrix) {
 
+        // The main tesselator used for drawing in the world.
         Tesselator tesselator = Tesselator.getInstance();
-        Matrix4f starMatrix = new Matrix4f(modelViewMatrix).rotateY((float) Math.toRadians(-90F));
-        Matrix4f sunMatrix =  new Matrix4f(modelViewMatrix).rotateY((float) Math.toRadians(-90F));
-        Matrix4f overworldMatrix = new Matrix4f(modelViewMatrix).rotateY((float) Math.toRadians(90F));
-        Matrix4f overworldGlowMatrix = new Matrix4f(modelViewMatrix).rotateY((float) Math.toRadians(90F));
 
         // rotate for time of day
         float timeAngle = LunarNether.netherTimeOfDay(level.dayTime()) * 360.0F;
-        starMatrix.rotateX(-(float) Math.toRadians(timeAngle));
-        sunMatrix.rotateX(-(float) Math.toRadians(timeAngle));
+
+        // Create and rotate the matrices horizontally 90 degrees so they're aligned correctly.
+        // We also rotate the overworld up to its resting position based on its configured value.
+        Matrix4f starMatrix = new Matrix4f(modelViewMatrix).rotateY((float) Math.toRadians(90F));
+        Matrix4f sunMatrix =  new Matrix4f(modelViewMatrix).rotateY((float) Math.toRadians(90F));
+        Matrix4f overworldMatrix = new Matrix4f(modelViewMatrix).rotateY((float) Math.toRadians(90F)).rotateX(-(float) Math.toRadians(-125.0F - LunarNetherServerConfig.SERVER_CONFIG.overworldSkyOffset.get()));
+        Matrix4f overworldGlowMatrix = new Matrix4f(modelViewMatrix).rotateY((float) Math.toRadians(90F)).rotateX(-(float) Math.toRadians(-125.0F - LunarNetherServerConfig.SERVER_CONFIG.overworldSkyOffset.get()));
+
+
+        starMatrix.rotateX((float) Math.toRadians(timeAngle));
+        sunMatrix.rotateX((float) Math.toRadians(timeAngle + LunarNetherServerConfig.SERVER_CONFIG.overworldSkyOffset.get()));
 
         // render stars
         RenderSystem.setShader(GameRenderer::getPositionColorShader);
@@ -118,7 +121,7 @@ public class LunarNetherDimensionEffects extends DimensionSpecialEffects {
             VertexBuffer.unbind();
         }
 
-        // render sun
+        // Draw Sun
         RenderSystem.enableBlend();
         RenderSystem.blendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
@@ -130,15 +133,7 @@ public class LunarNetherDimensionEffects extends DimensionSpecialEffects {
         sunBuilder.addVertex(sunMatrix, -SUN_SIZE, 100, SUN_SIZE).setUv(0, 1);
         BufferUploader.drawWithShader(sunBuilder.build());
 
-        // setup for overworld
-        //how many degrees up from the west is it, 0 is below you.
-        //125 is the exact middle of the first moon phase because
-        //the sun is measured from the bottom of the sprite but the earth is measured from the middle,
-        //resulting in a difference of 12.5 degrees from where it would be.
-        overworldMatrix.rotateX(-(float) Math.toRadians(-125.0F));
-        overworldGlowMatrix.rotateX(-(float) Math.toRadians(-125.0F));
-
-        // render overworld
+        // Render Overworld
         int phase = (int)(level.dayTime() * 7 / 24000 % 8L);
         int x = phase % 4;
         int y = phase / 4 % 2;
