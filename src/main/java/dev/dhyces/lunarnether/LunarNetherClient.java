@@ -10,14 +10,19 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.event.RegisterDimensionSpecialEffectsEvent;
 import net.neoforged.neoforge.client.event.RegisterParticleProvidersEvent;
 import net.neoforged.neoforge.client.gui.ConfigurationScreen;
 import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
 
+import java.util.function.Function;
+
 import dev.dhyces.lunarnether.client.dimensionspecialeffects.LunarNetherDimensionEffects;
 import dev.dhyces.lunarnether.client.particle.behavior.ColoredAshParticleBehavior;
+import dev.dhyces.lunarnether.config.LunarNetherClientConfig;
+import dev.dhyces.lunarnether.config.LunarNetherServerConfig;
 import dev.dhyces.lunarnether.registry.ModItems;
 import dev.dhyces.lunarnether.registry.ModParticleTypes;
 
@@ -29,9 +34,11 @@ public final class LunarNetherClient {
      * Increases 8 times slower than the normal overworld daytime.
      */
     public static final int LENGTH_OF_LUNAR_DAY = 24000*8;
+    public static final int TICKS_BEFORE_TOTALITY_AT_DAY_START = 12000;
 
     public LunarNetherClient(ModContainer container) {
         container.registerExtensionPoint(IConfigScreenFactory.class, ConfigurationScreen::new);
+        container.registerConfig(ModConfig.Type.CLIENT, LunarNetherClientConfig.SPEC);
     }
 
     @SubscribeEvent
@@ -52,7 +59,7 @@ public final class LunarNetherClient {
     }
 
     public static double eclipse() {
-        double shiftedEclipse = Minecraft.getInstance().level.dayTime() % LENGTH_OF_LUNAR_DAY - 12000;
+        double shiftedEclipse = Minecraft.getInstance().level.dayTime() % LENGTH_OF_LUNAR_DAY - TICKS_BEFORE_TOTALITY_AT_DAY_START ;
         return (20d / 1000000000) * (shiftedEclipse * shiftedEclipse);
     }
 

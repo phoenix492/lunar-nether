@@ -7,7 +7,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.Level;
 
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
-import dev.dhyces.lunarnether.LunarNetherConfig;
+import dev.dhyces.lunarnether.config.LunarNetherServerConfig;
 import dev.dhyces.lunarnether.util.ModTagKeys;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -26,7 +26,7 @@ public abstract class GravityMixins {
         @ModifyReturnValue(method = "getGravity", at = @At("RETURN"))
         public double lunarnether$modifyGravity(double original) {
             if (this.level().getBiome(this.blockPosition()).is(ModTagKeys.Biomes.LOWERED_GRAVITY)) {
-                return original * LunarNetherConfig.SERVER_CONFIG.modifiedGravityMultiplier.get();
+                return original * LunarNetherServerConfig.SERVER_CONFIG.modifiedGravityMultiplier.get();
             }
             return original;
         }
@@ -40,11 +40,11 @@ public abstract class GravityMixins {
 
         @ModifyVariable(method = "calculateFallDamage", at = @At("HEAD"), ordinal = 0)
         public float lunarnether$modifyFallDistance(float fallDistance) {
-            if (LunarNetherConfig.SERVER_CONFIG.applyModifiedGravity.get() &&
-                LunarNetherConfig.SERVER_CONFIG.fallDamageReductionMethod.get() == LunarNetherConfig.FallDamageReductionMethod.DISTANCE_MULT &&
+            if (LunarNetherServerConfig.SERVER_CONFIG.applyModifiedGravity.get() &&
+                LunarNetherServerConfig.SERVER_CONFIG.fallDamageReductionMethod.get() == LunarNetherServerConfig.FallDamageReductionMethod.DISTANCE_MULT &&
                 this.level().getBiome(this.blockPosition()).is(ModTagKeys.Biomes.LOWERED_GRAVITY)
             ) {
-                return (float) (fallDistance * LunarNetherConfig.SERVER_CONFIG.modifiedGravityMultiplier.get());
+                return (float) (fallDistance * LunarNetherServerConfig.SERVER_CONFIG.modifiedGravityMultiplier.get());
             }
             else {
                 return fallDistance;
@@ -53,11 +53,11 @@ public abstract class GravityMixins {
 
         @ModifyVariable(method = "calculateFallDamage", at = @At("STORE"), ordinal = 2)
         public float lunarnether$modifySafeFallDistance(float f) {
-            if (LunarNetherConfig.SERVER_CONFIG.applyModifiedGravity.get() &&
-                LunarNetherConfig.SERVER_CONFIG.fallDamageReductionMethod.get() ==  LunarNetherConfig.FallDamageReductionMethod.SAFE_FALL_DIV &&
+            if (LunarNetherServerConfig.SERVER_CONFIG.applyModifiedGravity.get() &&
+                LunarNetherServerConfig.SERVER_CONFIG.fallDamageReductionMethod.get() ==  LunarNetherServerConfig.FallDamageReductionMethod.SAFE_FALL_DIV &&
                 this.level().getBiome(this.blockPosition()).is(ModTagKeys.Biomes.LOWERED_GRAVITY)
             ) {
-                return (float) (f / LunarNetherConfig.SERVER_CONFIG.modifiedGravityMultiplier.get());
+                return (float) (f / LunarNetherServerConfig.SERVER_CONFIG.modifiedGravityMultiplier.get());
             } else {
                 return f;
             }
