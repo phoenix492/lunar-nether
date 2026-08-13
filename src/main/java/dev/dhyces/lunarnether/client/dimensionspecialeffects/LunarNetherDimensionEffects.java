@@ -18,10 +18,8 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.phys.Vec3;
-import net.neoforged.fml.ModList;
 
 import dev.dhyces.lunarnether.LunarNether;
-import dev.dhyces.lunarnether.config.LunarNetherServerConfig;
 import dev.dhyces.lunarnether.util.ColorUtil;
 import dev.dhyces.lunarnether.util.CompatData;
 import org.jetbrains.annotations.NotNull;
