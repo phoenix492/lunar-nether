@@ -18,6 +18,8 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 
 import dev.dhyces.lunarnether.LunarNether;
 import dev.dhyces.lunarnether.block.TitaniumBulbBlock;
+import dev.dhyces.lunarnether.block.TitaniumDoorBlock;
+import dev.dhyces.lunarnether.block.TitaniumTrapDoorBlock;
 
 public class ModBlocks {
     public static final DeferredRegister.Blocks MOD_BLOCKS = DeferredRegister.createBlocks(LunarNether.MODID);
@@ -238,7 +240,7 @@ public class ModBlocks {
 
     public static final DeferredBlock<DoorBlock> TITANIUM_DOOR = MOD_BLOCKS.register(
         "titanium_door",
-        () -> new DoorBlock(
+        () -> new TitaniumDoorBlock(
             TITANIUM,
             BlockBehaviour.Properties.ofFullCopy(Blocks.NETHERITE_BLOCK)
                 .strength(3.0F, 16.0F)
@@ -249,7 +251,7 @@ public class ModBlocks {
 
     public static final DeferredBlock<TrapDoorBlock> TITANIUM_TRAPDOOR = MOD_BLOCKS.register(
         "titanium_trapdoor",
-        () -> new TrapDoorBlock(
+        () -> new TitaniumTrapDoorBlock(
             TITANIUM,
             BlockBehaviour.Properties.ofFullCopy(Blocks.NETHERITE_BLOCK)
                 .strength(3.0F, 16.0F)
