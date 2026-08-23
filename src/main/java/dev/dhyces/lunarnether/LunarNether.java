@@ -16,7 +16,7 @@ import dev.dhyces.lunarnether.registry.ModFeatures;
 import dev.dhyces.lunarnether.registry.ModFluids;
 import dev.dhyces.lunarnether.registry.ModItems;
 import dev.dhyces.lunarnether.registry.ModParticleTypes;
-import dev.dhyces.lunarnether.util.CompatData;
+import dev.dhyces.lunarnether.util.ClientCompatData;
 
 @Mod(LunarNether.MODID)
 
@@ -33,7 +33,7 @@ public class LunarNether {
         ModParticleTypes.MOD_PARTICLE_TYPES.register(modEventBus);
         ModFeatures.MOD_FEATURES.register(modEventBus);
         modContainer.registerConfig(ModConfig.Type.SERVER, LunarNetherServerConfig.SPEC);
-        CompatData.init();
+        ClientCompatData.init();
     }
 
     /**

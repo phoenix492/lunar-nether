@@ -21,7 +21,7 @@ import net.minecraft.world.phys.Vec3;
 
 import dev.dhyces.lunarnether.LunarNether;
 import dev.dhyces.lunarnether.util.ColorUtil;
-import dev.dhyces.lunarnether.util.CompatData;
+import dev.dhyces.lunarnether.util.ClientCompatData;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.joml.Matrix4f;
@@ -72,7 +72,7 @@ public class LunarNetherDimensionEffects extends DimensionSpecialEffects {
 
     @Override
     public boolean isFoggyAt(int pX, int pY) {
-        return pY < CompatData.getSkyboxStartHeight();
+        return pY < ClientCompatData.getSkyboxStartHeight();
     }
 
     @Override
@@ -83,7 +83,7 @@ public class LunarNetherDimensionEffects extends DimensionSpecialEffects {
 
     @Override
     public boolean renderSky(ClientLevel level, int ticks, float partialTick, Matrix4f modelViewMatrix, Camera camera, Matrix4f projectionMatrix, boolean isFoggy, Runnable setupFog) {
-        if (CompatData.STELLAR_VIEW_LOADED || camera.getPosition().y < CompatData.getSkyboxStartHeight()) {
+        if (ClientCompatData.STELLAR_VIEW_LOADED || camera.getPosition().y < ClientCompatData.getSkyboxStartHeight()) {
             return false;
         } else {
             renderLunarNetherSkybox(level, modelViewMatrix, projectionMatrix);
